@@ -71,10 +71,24 @@ public class Enplegatua {
 	public void setArdura_idArdura(int ardura_idArdura) {
 		Ardura_idArdura = ardura_idArdura;
 	}
-	public boolean zuzendariaBalidatu(int zuzendari) {
+	public boolean zuzendariaStringToBoolean(String zuzendari) {
 		boolean balidatu = false;
-		if(zuzendari == 1)
+		if(zuzendari.equalsIgnoreCase("true"))
 			balidatu = true;
+		else if(zuzendari.equalsIgnoreCase("false"))
+			balidatu = false;
+		else
+			System.out.println("Zuzendaria txarto dago");
+		
+		return balidatu;
+	}
+	
+	public String zuzendariaBooleanToString(Boolean zuzendari) {
+		String balidatu = null;
+		if(zuzendari == true)
+			balidatu = "true";
+		else if(zuzendari == false)
+			balidatu = "false";
 		
 		return balidatu;
 	}
@@ -84,8 +98,15 @@ public class Enplegatua {
 		
 		return "idEnplegatua: " + idEnplegatua + "\nizena: " + izena + "\nsoldata: " + soldata + "\naltaData: "
 				+ altaData + "\naltaOrdua: " + altaOrdua + "\nDepartamentua_idDepartamentua: "
-				+ Departamentua_idDepartamentua + "\nArdura_idArdura: " + Ardura_idArdura + "\nZuzendaria: " + zuzendari
-				+ "\n************************************\n";
+				+ Departamentua_idDepartamentua + "\nArdura_idArdura: " + Ardura_idArdura + "\nZuzendaria: " + zuzendari;
+	}
+
+	public boolean getZuzendari() {
+		return zuzendari;
+	}
+
+	public void setZuzendari(boolean zuzendari) {
+		this.zuzendari = zuzendari;
 	}
 	
 	

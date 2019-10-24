@@ -36,6 +36,12 @@ public class Departamentua {
 	public void setKokapena(String kokapena) {
 		this.kokapena = kokapena;
 	}
+
+	@Override
+	public String toString() {
+		return "idDepartamentua: " + idDepartamentua + "\nizena: " + izena + "\nkokapena: " + kokapena
+				+ "\n************************************\n";
+	}
 	
 	
 	
