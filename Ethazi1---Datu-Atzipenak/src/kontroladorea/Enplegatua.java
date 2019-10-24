@@ -2,6 +2,10 @@ package kontroladorea;
 
 public class Enplegatua {
 
+	public Enplegatua() {
+		
+	}
+
 	private int idEnplegatua;
 	private String izena;
 	private double soldata;
@@ -9,10 +13,10 @@ public class Enplegatua {
 	private String altaOrdua;
 	private int Departamentua_idDepartamentua;
 	private int Ardura_idArdura;
-	private int zuzendari;
+	private boolean zuzendari;
 	
 		public Enplegatua(int idEnplegatua, String izena, double soldata, String altaData, String altaOrdua,
-			int departamentua_idDepartamentua, int ardura_idArdura, int zuzendari) {
+			int departamentua_idDepartamentua, int ardura_idArdura, boolean zuzendari) {
 		super();
 		this.idEnplegatua = idEnplegatua;
 		this.izena = izena;
@@ -67,13 +71,20 @@ public class Enplegatua {
 	public void setArdura_idArdura(int ardura_idArdura) {
 		Ardura_idArdura = ardura_idArdura;
 	}
-
+	public boolean zuzendariaBalidatu(int zuzendari) {
+		boolean balidatu = false;
+		if(zuzendari == 1)
+			balidatu = true;
+		
+		return balidatu;
+	}
+	
 	@Override
 	public String toString() {
 		
 		return "idEnplegatua: " + idEnplegatua + "\nizena: " + izena + "\nsoldata: " + soldata + "\naltaData: "
 				+ altaData + "\naltaOrdua: " + altaOrdua + "\nDepartamentua_idDepartamentua: "
-				+ Departamentua_idDepartamentua + "\nArdura_idArdura: " + Ardura_idArdura
+				+ Departamentua_idDepartamentua + "\nArdura_idArdura: " + Ardura_idArdura + "\nZuzendaria: " + zuzendari
 				+ "\n************************************\n";
 	}
 	

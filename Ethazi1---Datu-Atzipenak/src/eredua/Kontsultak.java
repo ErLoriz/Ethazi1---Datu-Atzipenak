@@ -21,7 +21,8 @@ public class Kontsultak {
 		int Departamentua_idDepartamentua=0;
 		int Ardura_idArdura=0;
 		int zuzendari=0;
-		
+		boolean zuzendariBoolean=false;
+		Enplegatua e = new Enplegatua();
 	
 		
 		Connection Conexion = (Connection) Konexioa.getConnection();
@@ -41,15 +42,16 @@ public class Kontsultak {
 				Departamentua_idDepartamentua = rs.getInt("Departamentua_idDepartamentua");
 				Ardura_idArdura = rs.getInt("Ardura_idArdura");
 				zuzendari = rs.getInt("zuzendari");
-				Enplegatua e1 = new Enplegatua (idEnplegatua, izena, soldata, altaData,	altaOrdua,	Departamentua_idDepartamentua, Ardura_idArdura, zuzendari);
+				zuzendariBoolean = e.zuzendariaBalidatu(zuzendari);
+				Enplegatua e1 = new Enplegatua (idEnplegatua, izena, soldata, altaData,	altaOrdua,	Departamentua_idDepartamentua, Ardura_idArdura, zuzendariBoolean);
 				Apartamentuak.add(e1);
 
 			}
 			
 			System.out.println();
 			System.out.println("Conexioa eginda");
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
+		}catch(Exception y) {
+			System.out.println(y.getMessage());
 			
 		}
 		
