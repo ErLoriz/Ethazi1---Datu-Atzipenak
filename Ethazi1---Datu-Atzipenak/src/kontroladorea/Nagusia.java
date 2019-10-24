@@ -8,7 +8,7 @@ public class Nagusia {
 
 		
 		Konexioa konexioa = new Konexioa("elorrieta");
-		System.out.println(eredua.KontsultaEnplegatua.ApartamentuakIkusi().toString().replaceAll("[\\[\\]]", "").replaceAll(",", " "));
+		System.out.println(eredua.Kontsultak.ApartamentuakIkusi().toString().replaceAll("[\\[\\]]", "").replaceAll(",", " "));
 		
 	}
 

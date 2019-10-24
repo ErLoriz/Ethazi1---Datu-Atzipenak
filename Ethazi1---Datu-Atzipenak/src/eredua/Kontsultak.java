@@ -9,7 +9,7 @@ import com.mysql.jdbc.Statement;
 
 import kontroladorea.Enplegatua;
 
-public class KontsultaEnplegatua {
+public class Kontsultak {
 
 	public static ArrayList <Enplegatua> ApartamentuakIkusi(){
 		ArrayList <Enplegatua> Apartamentuak = new ArrayList<Enplegatua>();
@@ -19,8 +19,8 @@ public class KontsultaEnplegatua {
 		String altaData=null;
 		String altaOrdua=null;
 		int Departamentua_idDepartamentua=0;
-		int Zuzendaria_idZuzendaria=0;
 		int Ardura_idArdura=0;
+		int zuzendari=0;
 		
 	
 		
@@ -31,7 +31,7 @@ public class KontsultaEnplegatua {
 			
 			s =(Statement) Conexion.createStatement();
 
-			ResultSet rs = ((java.sql.Statement) s).executeQuery("SELECT idEnplegatua, izena, soldata, altaData, altaOrdua,	Departamentua_idDepartamentua, Zuzendaria_idZuzendaria, Ardura_idArdura FROM `enplegatua`");
+			ResultSet rs = ((java.sql.Statement) s).executeQuery("SELECT idEnplegatua, izena, soldata, altaData, altaOrdua,	Departamentua_idDepartamentua, Ardura_idArdura, zuzendari FROM `enplegatua`");
 			while (rs.next()) {
 				idEnplegatua = rs.getInt("idEnplegatua");
 				izena = rs.getString("izena");
@@ -39,10 +39,9 @@ public class KontsultaEnplegatua {
 				altaData = rs.getString("altaData");
 				altaOrdua = rs.getString("altaOrdua");
 				Departamentua_idDepartamentua = rs.getInt("Departamentua_idDepartamentua");
-				Zuzendaria_idZuzendaria = rs.getInt("Zuzendaria_idZuzendaria");
 				Ardura_idArdura = rs.getInt("Ardura_idArdura");
-				Enplegatua e1 = new Enplegatua (idEnplegatua, izena, soldata, altaData,	altaOrdua,	Departamentua_idDepartamentua,
-						Zuzendaria_idZuzendaria, Ardura_idArdura);
+				zuzendari = rs.getInt("zuzendari");
+				Enplegatua e1 = new Enplegatua (idEnplegatua, izena, soldata, altaData,	altaOrdua,	Departamentua_idDepartamentua, Ardura_idArdura, zuzendari);
 				Apartamentuak.add(e1);
 
 			}

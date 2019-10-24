@@ -8,11 +8,11 @@ public class Enplegatua {
 	private String altaData;
 	private String altaOrdua;
 	private int Departamentua_idDepartamentua;
-	private int Zuzendaria_idZuzendaria;
 	private int Ardura_idArdura;
+	private int zuzendari;
 	
 		public Enplegatua(int idEnplegatua, String izena, double soldata, String altaData, String altaOrdua,
-			int departamentua_idDepartamentua, int zuzendaria_idZuzendaria, int ardura_idArdura) {
+			int departamentua_idDepartamentua, int ardura_idArdura, int zuzendari) {
 		super();
 		this.idEnplegatua = idEnplegatua;
 		this.izena = izena;
@@ -20,8 +20,8 @@ public class Enplegatua {
 		this.altaData = altaData;
 		this.altaOrdua = altaOrdua;
 		Departamentua_idDepartamentua = departamentua_idDepartamentua;
-		Zuzendaria_idZuzendaria = zuzendaria_idZuzendaria;
 		Ardura_idArdura = ardura_idArdura;
+		this.zuzendari = zuzendari;
 	}
 	
 	public int getIdEnplegatua() {
@@ -60,12 +60,7 @@ public class Enplegatua {
 	public void setDepartamentua_idDepartamentua(int departamentua_idDepartamentua) {
 		Departamentua_idDepartamentua = departamentua_idDepartamentua;
 	}
-	public int getZuzendaria_idZuzendaria() {
-		return Zuzendaria_idZuzendaria;
-	}
-	public void setZuzendaria_idZuzendaria(int zuzendaria_idZuzendaria) {
-		Zuzendaria_idZuzendaria = zuzendaria_idZuzendaria;
-	}
+	
 	public int getArdura_idArdura() {
 		return Ardura_idArdura;
 	}
@@ -78,8 +73,7 @@ public class Enplegatua {
 		
 		return "idEnplegatua: " + idEnplegatua + "\nizena: " + izena + "\nsoldata: " + soldata + "\naltaData: "
 				+ altaData + "\naltaOrdua: " + altaOrdua + "\nDepartamentua_idDepartamentua: "
-				+ Departamentua_idDepartamentua + "\nZuzendaria_idZuzendaria: " + Zuzendaria_idZuzendaria
-				+ "\nArdura_idArdura: " + Ardura_idArdura
+				+ Departamentua_idDepartamentua + "\nArdura_idArdura: " + Ardura_idArdura
 				+ "\n************************************\n";
 	}
 	
