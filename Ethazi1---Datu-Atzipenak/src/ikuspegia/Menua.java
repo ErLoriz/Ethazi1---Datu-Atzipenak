@@ -13,7 +13,6 @@ public class Menua extends JFrame {
 	private JPanel contentPane;
 	private JButton btnDepartamentuakKudeatu = new JButton("Departamentuak Kudeatu");
 	private JButton btnEnplegatuakKudeatu = new JButton("Enplegatuak Kudeatu");
-	private JButton btnArdurakKudeatu = new JButton("Ardurak Kudeatu");
 
 	/**
 	 * Launch the application.
@@ -38,10 +37,6 @@ public class Menua extends JFrame {
 		
 		btnEnplegatuakKudeatu.setBounds(95, 111, 221, 23);
 		contentPane.add(btnEnplegatuakKudeatu);
-		
-		
-		btnArdurakKudeatu.setBounds(95, 188, 221, 23);
-		contentPane.add(btnArdurakKudeatu);
 	}
 
 }
