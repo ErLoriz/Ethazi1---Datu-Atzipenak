@@ -10,11 +10,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+import kontroladorea.Metodoak;
+import kontroladorea.MetodoakIkuspegia;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DepartamentuaKudeatu extends JFrame {
 
@@ -28,7 +34,7 @@ public class DepartamentuaKudeatu extends JFrame {
  
     //DEFINICIÓN DE LOS CUADROS DE TEXTO
     protected JTextField txtIzena;
-    protected JTextField txtAbizena;
+    protected JTextField txtKokapena;
  
     //DEFINICIÓN DE LOS BOTONES
     protected JButton btnAdd;
@@ -41,10 +47,12 @@ public class DepartamentuaKudeatu extends JFrame {
     protected String[] cabecera;    //Cabecera de la tabla
     protected DefaultTableModel dtm;//Unión de la cabecera y la tabla
     protected JTable tabla; //Tabla propiamente dicha
+    private JButton btnBaieztatu;
  
     /**************** MÉTODOS ***************************/
     //CONSTRUCTOR
-    DepartamentuaKudeatu(){
+    public DepartamentuaKudeatu(){
+    	this.setResizable(false);
         //Métodos de la JFrame
         setBounds(100, 100, 630, 450);//Definir las dimensiones de la ventana
         setTitle("DEPARTAMENTUEN KUDEAPENA");    //Barra de título
@@ -62,21 +70,22 @@ public class DepartamentuaKudeatu extends JFrame {
         /**************** BOF ETIQUETAS  vvvvvvvvvvvvvvvv **/
         //ETIQUETA NOMBRE
         lblIzena = new JLabel("Izena:");  //Crear el objeto
-        contenedor.add(lblIzena);      //Añadirlo al contenedor
-        sp.putConstraint(SpringLayout.NORTH, lblIzena, 10,
-                        SpringLayout.NORTH, contenedor);
-        sp.putConstraint(SpringLayout.WEST, lblIzena,  10,
-                        SpringLayout.WEST, contenedor);
+        lblIzena.setEnabled(false);
+        sp.putConstraint(SpringLayout.WEST, lblIzena, 10, SpringLayout.WEST, contenedor);
+        contenedor.add(lblIzena);
        
         //ETIQUETA NIF
         lblKokapena = new JLabel("Kokapena:");
-        sp.putConstraint(SpringLayout.WEST, lblKokapena, 0, SpringLayout.WEST, lblIzena);
+        lblKokapena.setEnabled(false);
+        sp.putConstraint(SpringLayout.WEST, lblKokapena, 10, SpringLayout.WEST, contenedor);
         contenedor.add(lblKokapena);
         /**************** EOF ETIQUETAS  ^^^^^^^^^^^^^^^^ **/
  
         /**************** BOF CUADROS DE  TEXTO vvvvvvvvv **/
         //CUADRO DE TEXTO PARA EL NOMBRE
         txtIzena = new JTextField();
+        txtIzena.setEnabled(false);
+        sp.putConstraint(SpringLayout.NORTH, lblIzena, 3, SpringLayout.NORTH, txtIzena);
         contenedor.add(txtIzena);
         sp.putConstraint(SpringLayout.NORTH, txtIzena, 10,
                         SpringLayout.NORTH, contenedor);
@@ -85,14 +94,15 @@ public class DepartamentuaKudeatu extends JFrame {
         sp.putConstraint(SpringLayout.EAST, txtIzena, 300,
                         SpringLayout.WEST, contenedor);
         //CUADRO DE TEXTO PARA EL NIF
-        txtAbizena = new JTextField();
-        sp.putConstraint(SpringLayout.NORTH, lblKokapena, 3, SpringLayout.NORTH, txtAbizena);
-        contenedor.add(txtAbizena);    //añadir al contenedor
-        sp.putConstraint(SpringLayout.NORTH, txtAbizena, 50,
+        txtKokapena = new JTextField();
+        txtKokapena.setEnabled(false);
+        sp.putConstraint(SpringLayout.NORTH, lblKokapena, 3, SpringLayout.NORTH, txtKokapena);
+        contenedor.add(txtKokapena);    //añadir al contenedor
+        sp.putConstraint(SpringLayout.NORTH, txtKokapena, 50,
                         SpringLayout.NORTH, contenedor);
-        sp.putConstraint(SpringLayout.WEST, txtAbizena, 100,
+        sp.putConstraint(SpringLayout.WEST, txtKokapena, 100,
                         SpringLayout.WEST, contenedor);
-        sp.putConstraint(SpringLayout.EAST, txtAbizena, 300,
+        sp.putConstraint(SpringLayout.EAST, txtKokapena, 300,
                         SpringLayout.WEST, contenedor);
         /**************** EOF CUADROS DE  TEXTO ^^^^^^^^^ **/
  
@@ -103,6 +113,7 @@ public class DepartamentuaKudeatu extends JFrame {
         dtm         = new DefaultTableModel(datos,cabecera);
         tabla       = new JTable(dtm);
         scroll.setViewportView(tabla);
+        Metodoak.departamentuakIkusi(scroll);
         //y ahora se coloca el scrollpane...
         contenedor.add(scroll); //añadir al contenedor
         sp.putConstraint(SpringLayout.NORTH, scroll, 120,
@@ -125,18 +136,44 @@ public class DepartamentuaKudeatu extends JFrame {
                         SpringLayout.WEST, contenedor);
         //BOTÓN BORRAR
         btnDel          = new JButton("Ezabatu");
+        sp.putConstraint(SpringLayout.NORTH, btnDel, 0, SpringLayout.NORTH, btnAdd);
+        sp.putConstraint(SpringLayout.WEST, btnDel, 59, SpringLayout.EAST, btnAdd);
         contenedor.add(btnDel);
-        sp.putConstraint(SpringLayout.SOUTH, btnDel, -10,
-                        SpringLayout.SOUTH, contenedor);
-        sp.putConstraint(SpringLayout.WEST, btnDel,  190,
-                        SpringLayout.WEST, contenedor);
         //BOTÓN MODIFICAR
         btnUpd          = new JButton("Editatu");
+        btnUpd.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		lblIzena.setEnabled(true);
+        		lblKokapena.setEnabled(true);
+        		txtIzena.setEnabled(true);
+        		txtKokapena.setEnabled(true);
+        		btnBaieztatu.setEnabled(true);
+        	}
+        });
+        sp.putConstraint(SpringLayout.NORTH, btnUpd, 0, SpringLayout.NORTH, btnAdd);
+        sp.putConstraint(SpringLayout.WEST, btnUpd, 61, SpringLayout.EAST, btnDel);
         contenedor.add(btnUpd);
-        sp.putConstraint(SpringLayout.SOUTH, btnUpd, -10,
-                        SpringLayout.SOUTH, contenedor);
-        sp.putConstraint(SpringLayout.WEST, btnUpd,  310,
-                        SpringLayout.WEST, contenedor);
+        
+        JButton btnIrten = new JButton("Irten");
+        sp.putConstraint(SpringLayout.NORTH, btnIrten, 6, SpringLayout.SOUTH, scroll);
+        sp.putConstraint(SpringLayout.WEST, btnIrten, -114, SpringLayout.EAST, contenedor);
+        sp.putConstraint(SpringLayout.SOUTH, btnIrten, 6, SpringLayout.SOUTH, btnAdd);
+        sp.putConstraint(SpringLayout.EAST, btnIrten, -28, SpringLayout.EAST, contenedor);
+        btnIrten.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		MetodoakIkuspegia.pasatuMenura();
+        		dispose();
+        	}
+        });
+        contenedor.add(btnIrten);
+        
+        btnBaieztatu = new JButton("Baieztatu");
+        btnBaieztatu.setEnabled(false);
+        sp.putConstraint(SpringLayout.NORTH, btnBaieztatu, 20, SpringLayout.NORTH, contenedor);
+        sp.putConstraint(SpringLayout.WEST, btnBaieztatu, 52, SpringLayout.EAST, txtIzena);
+        sp.putConstraint(SpringLayout.SOUTH, btnBaieztatu, 0, SpringLayout.SOUTH, lblKokapena);
+        sp.putConstraint(SpringLayout.EAST, btnBaieztatu, 152, SpringLayout.EAST, txtIzena);
+        contenedor.add(btnBaieztatu);
         /**************** EOF BOTONES ^^^^^^^^^^^^^^^^^^^^ **/
  
         //Se hace visible la ventana

@@ -48,6 +48,7 @@ public class EnplegatuaKudeatu extends JFrame {
     /**************** MÉTODOS ***************************/
     //CONSTRUCTOR
     EnplegatuaKudeatu(){
+    	this.setResizable(false);
         //Métodos de la JFrame
         setBounds(100, 100, 630, 450);//Definir las dimensiones de la ventana
         setTitle("DEPARTAMENTUEN KUDEAPENA");    //Barra de título

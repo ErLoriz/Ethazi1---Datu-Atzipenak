@@ -6,8 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import kontroladorea.MetodoakIkuspegia;
+
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Hasiera extends JFrame {
 
@@ -29,10 +34,16 @@ public class Hasiera extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		this.setResizable(false);
+		btnOngiEtorri.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MetodoakIkuspegia.pasatuMenura();
+				dispose();
+			}
+		});
 		
 		btnOngiEtorri.setFont(new Font("Tahoma", Font.BOLD, 29));
-		btnOngiEtorri.setBounds(0, 0, 434, 261);
+		btnOngiEtorri.setBounds(0, 0, 624, 421);
 		contentPane.add(btnOngiEtorri);
 	}
 }
