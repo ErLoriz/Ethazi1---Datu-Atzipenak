@@ -97,8 +97,8 @@ public class Enplegatua {
 	public String toString() {
 		
 		return "idEnplegatua: " + idEnplegatua + "\nizena: " + izena + "\nsoldata: " + soldata + "\naltaData: "
-				+ altaData + "\naltaOrdua: " + altaOrdua + "\nDepartamentua_idDepartamentua: "
-				+ Departamentua_idDepartamentua + "\nArdura_idArdura: " + Ardura_idArdura + "\nZuzendaria: " + zuzendari;
+				+ altaData + "\naltaOrdua: " + altaOrdua + "\nZuzendaria: " + zuzendari + "\nDepartamentua_idDepartamentua: "
+				+ Departamentua_idDepartamentua + "\nArdura_idArdura: " + Ardura_idArdura;
 	}
 
 	public boolean getZuzendari() {

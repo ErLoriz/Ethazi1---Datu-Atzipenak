@@ -10,13 +10,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+import kontroladorea.Enplegatua;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import java.awt.Font;
 
-public class DepartamentuaKudeatu extends JFrame {
+public class EnplegatuaKudeatu extends JFrame {
 
 	 /**************** ATRIBUTOS ***************************/
     //CONTENEDOR PRINCIPAL
@@ -44,7 +47,7 @@ public class DepartamentuaKudeatu extends JFrame {
  
     /**************** MÉTODOS ***************************/
     //CONSTRUCTOR
-    DepartamentuaKudeatu(){
+    EnplegatuaKudeatu(){
         //Métodos de la JFrame
         setBounds(100, 100, 630, 450);//Definir las dimensiones de la ventana
         setTitle("DEPARTAMENTUEN KUDEAPENA");    //Barra de título
@@ -99,7 +102,7 @@ public class DepartamentuaKudeatu extends JFrame {
         /**************** BOF TABLA  vvvvvvvvvvvvvvvvvvvv **/
         scroll      = 
         		new JScrollPane();
-        cabecera    = new String[] {"ID","IZENA","KOKAPENA"};
+        cabecera    = new String[] {"ID","IZENA","SOLDATA","ALTA DATA","ALTA ORDUA","ZUZENDARIA","DEPT.","ARDURA"};
         dtm         = new DefaultTableModel(datos,cabecera);
         tabla       = new JTable(dtm);
         scroll.setViewportView(tabla);
@@ -142,4 +145,6 @@ public class DepartamentuaKudeatu extends JFrame {
         //Se hace visible la ventana
         setVisible(true);
     }
+    
+    
 }

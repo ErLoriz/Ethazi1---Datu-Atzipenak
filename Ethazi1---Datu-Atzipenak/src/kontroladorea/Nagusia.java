@@ -1,6 +1,7 @@
 package kontroladorea;
 
 import eredua.Konexioa;
+import eredua.Kontsultak;
 
 public class Nagusia {
 
@@ -9,9 +10,9 @@ public class Nagusia {
 		
 		Konexioa konexioa = new Konexioa("elorrieta");
 		//System.out.println(eredua.Kontsultak.DepartamentuakIkusi().toString().replaceAll("[\\[\\]]", "").replaceAll(",", " "));
-		
-		Enplegatua e1 = new Enplegatua();
-		
+		System.out.println(eredua.Kontsultak.EnplegatuakIkusi().toString());
+
+	
 		System.out.println(eredua.Kontsultak.CSVOharraIrakurri());
 		
 		
