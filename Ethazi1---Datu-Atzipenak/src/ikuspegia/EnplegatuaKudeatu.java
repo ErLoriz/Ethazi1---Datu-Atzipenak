@@ -12,12 +12,17 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import kontroladorea.Enplegatua;
+import kontroladorea.MetodoakIkuspegia;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.awt.event.ActionEvent;
 
 public class EnplegatuaKudeatu extends JFrame {
 
@@ -44,10 +49,11 @@ public class EnplegatuaKudeatu extends JFrame {
     protected String[] cabecera;    //Cabecera de la tabla
     protected DefaultTableModel dtm;//Unión de la cabecera y la tabla
     protected JTable tabla; //Tabla propiamente dicha
+    private JButton button;
  
     /**************** MÉTODOS ***************************/
     //CONSTRUCTOR
-    EnplegatuaKudeatu(){
+    public EnplegatuaKudeatu(){
     	this.setResizable(false);
         //Métodos de la JFrame
         setBounds(100, 100, 630, 450);//Definir las dimensiones de la ventana
@@ -104,7 +110,7 @@ public class EnplegatuaKudeatu extends JFrame {
         scroll      = 
         		new JScrollPane();
         cabecera    = new String[] {"ID","IZENA","SOLDATA","ALTA DATA","ALTA ORDUA","ZUZENDARIA","DEPT.","ARDURA"};
-        dtm         = new DefaultTableModel(datos,cabecera);
+        dtm         = new DefaultTableModel(enplegatuakIkusi(eredua.Kontsultak.EnplegatuakIkusi()),cabecera);
         tabla       = new JTable(dtm);
         scroll.setViewportView(tabla);
         //y ahora se coloca el scrollpane...
@@ -136,15 +142,50 @@ public class EnplegatuaKudeatu extends JFrame {
                         SpringLayout.WEST, contenedor);
         //BOTÓN MODIFICAR
         btnUpd          = new JButton("Editatu");
+        btnUpd.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
         contenedor.add(btnUpd);
         sp.putConstraint(SpringLayout.SOUTH, btnUpd, -10,
                         SpringLayout.SOUTH, contenedor);
         sp.putConstraint(SpringLayout.WEST, btnUpd,  310,
                         SpringLayout.WEST, contenedor);
+        
+        button = new JButton("Irten");
+        button.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		MetodoakIkuspegia.pasatuMenura();
+        		dispose();
+        	}
+        });
+        sp.putConstraint(SpringLayout.NORTH, button, 6, SpringLayout.SOUTH, scroll);
+        sp.putConstraint(SpringLayout.WEST, button, -94, SpringLayout.EAST, scroll);
+        sp.putConstraint(SpringLayout.SOUTH, button, 0, SpringLayout.SOUTH, btnAdd);
+        sp.putConstraint(SpringLayout.EAST, button, -25, SpringLayout.EAST, contenedor);
+        contenedor.add(button);
         /**************** EOF BOTONES ^^^^^^^^^^^^^^^^^^^^ **/
  
         //Se hace visible la ventana
         setVisible(true);
+    }
+    
+    public static String[][] enplegatuakIkusi(ArrayList <Enplegatua> e1){
+    	String[][] data = new String[e1.size()][8];
+    	
+    	for(int i = 0; i <= e1.size() - 1; i++) {
+	    		
+	    	data[i][0] = Integer.toString(e1.get(i).getIdEnplegatua());
+	    	data[i][1] = e1.get(i).getIzena();
+	    	data[i][2] = Double.toString(e1.get(i).getSoldata());
+	    	data[i][3] = e1.get(i).getAltaData();
+	    	data[i][4] = e1.get(i).getAltaOrdua();
+	    	data[i][5] = Boolean.toString(e1.get(i).getZuzendari());
+	    	data[i][6] = Integer.toString(e1.get(i).getDepartamentua_idDepartamentua());
+	    	data[i][7] = Integer.toString(e1.get(i).getArdura_idArdura());
+    	}
+    
+    	return data;
     }
     
     

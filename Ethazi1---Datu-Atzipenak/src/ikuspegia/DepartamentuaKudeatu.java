@@ -11,6 +11,8 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import kontroladorea.Departamentua;
+import kontroladorea.Enplegatua;
 import kontroladorea.Metodoak;
 import kontroladorea.MetodoakIkuspegia;
 
@@ -20,6 +22,7 @@ import javax.swing.SpringLayout;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class DepartamentuaKudeatu extends JFrame {
@@ -110,7 +113,7 @@ public class DepartamentuaKudeatu extends JFrame {
         scroll      = 
         		new JScrollPane();
         cabecera    = new String[] {"ID","IZENA","KOKAPENA"};
-        dtm         = new DefaultTableModel(datos,cabecera);
+        dtm         = new DefaultTableModel(departamentuaIkusi(eredua.Kontsultak.DepartamentuakIkusi()),cabecera);
         tabla       = new JTable(dtm);
         scroll.setViewportView(tabla);
         Metodoak.departamentuakIkusi(scroll);
@@ -179,4 +182,19 @@ public class DepartamentuaKudeatu extends JFrame {
         //Se hace visible la ventana
         setVisible(true);
     }
+    
+    public static String[][] departamentuaIkusi(ArrayList <Departamentua> d1){
+    	String[][] data = new String[d1.size()][3];
+    	
+    	for(int i = 0; i <= d1.size() - 1; i++) {
+	    		
+	    	data[i][0] = Integer.toString(d1.get(i).getIdDepartamentua());
+	    	data[i][1] = d1.get(i).getIzena();
+	    	data[i][2] = d1.get(i).getKokapena();
+
+    	}
+    
+    	return data;
+    }
+    
 }

@@ -44,6 +44,12 @@ public class Menua extends JFrame {
 		
 		btnDepartamentuakKudeatu.setBounds(156, 95, 282, 49);
 		contentPane.add(btnDepartamentuakKudeatu);
+		btnEnplegatuakKudeatu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MetodoakIkuspegia.pasatuEnplegatuetara();
+				dispose();
+			}
+		});
 		
 		
 		btnEnplegatuakKudeatu.setBounds(156, 239, 282, 49);

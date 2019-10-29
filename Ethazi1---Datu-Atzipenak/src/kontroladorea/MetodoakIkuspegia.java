@@ -17,4 +17,12 @@ public class MetodoakIkuspegia {
 		menua.setVisible(true);
 		menua.setBounds(100, 100, 630, 450);
 	}
+	
+	
+	public static void pasatuEnplegatuetara() {
+		EnplegatuaKudeatu ek = new EnplegatuaKudeatu();
+		ek.setVisible(true);
+		ek.setBounds(100, 100, 630, 450);
+	}
+	
 }

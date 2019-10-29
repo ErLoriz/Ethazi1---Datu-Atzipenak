@@ -15,7 +15,7 @@ import kontroladorea.*;
 
 public class Kontsultak {
 
-	public static ArrayList <Enplegatua> ApartamentuakIkusi(){
+	public static ArrayList <Enplegatua> EnplegatuakIkusi(){
 		ArrayList <Enplegatua> Apartamentuak = new ArrayList<Enplegatua>();
 		int idEnplegatua=0;
 		String izena=null;
@@ -36,7 +36,7 @@ public class Kontsultak {
 			
 			s =(Statement) Conexion.createStatement();
 
-			ResultSet rs = ((java.sql.Statement) s).executeQuery("SELECT idEnplegatua, izena, soldata, altaData, altaOrdua,	Departamentua_idDepartamentua, Ardura_idArdura, zuzendari FROM `enplegatua`");
+			ResultSet rs = ((java.sql.Statement) s).executeQuery("SELECT idEnplegatua, izena, soldata, altaData, altaOrdua, zuzendari,	Departamentua_idDepartamentua, Ardura_idArdura FROM `enplegatua`");
 			while (rs.next()) {
 				idEnplegatua = rs.getInt("idEnplegatua");
 				izena = rs.getString("izena");
@@ -117,7 +117,7 @@ public class Kontsultak {
 	String zuzendari=null;
 	boolean zuzendariBoolean=false;
 
-	String csvFile = ".\\Ethazi1---Datu-Atzipenak\\src\\Oharra.csv";
+	String csvFile = ".\\src\\Oharra.csv";
 	BufferedReader br = null;
 	String line = "";
 	//Se define separador ","
