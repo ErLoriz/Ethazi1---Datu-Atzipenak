@@ -23,6 +23,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.event.ActionEvent;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.ListSelectionModel;
 
 public class EnplegatuaKudeatu extends JFrame {
 
@@ -50,10 +53,12 @@ public class EnplegatuaKudeatu extends JFrame {
     protected DefaultTableModel dtm;//Unión de la cabecera y la tabla
     protected JTable tabla; //Tabla propiamente dicha
     private JButton button;
+    private JButton button_1;
  
     /**************** MÉTODOS ***************************/
     //CONSTRUCTOR
-    public EnplegatuaKudeatu(){
+    @SuppressWarnings("serial")
+	public EnplegatuaKudeatu(){
     	this.setResizable(false);
         //Métodos de la JFrame
         setBounds(100, 100, 630, 450);//Definir las dimensiones de la ventana
@@ -79,7 +84,8 @@ public class EnplegatuaKudeatu extends JFrame {
                         SpringLayout.WEST, contenedor);
        
         //ETIQUETA NIF
-        lblKokapena = new JLabel("Kokapena:");
+        lblKokapena = new JLabel("Soldata:");
+        sp.putConstraint(SpringLayout.NORTH, lblKokapena, 29, SpringLayout.SOUTH, lblIzena);
         sp.putConstraint(SpringLayout.WEST, lblKokapena, 0, SpringLayout.WEST, lblIzena);
         contenedor.add(lblKokapena);
         /**************** EOF ETIQUETAS  ^^^^^^^^^^^^^^^^ **/
@@ -87,23 +93,17 @@ public class EnplegatuaKudeatu extends JFrame {
         /**************** BOF CUADROS DE  TEXTO vvvvvvvvv **/
         //CUADRO DE TEXTO PARA EL NOMBRE
         txtIzena = new JTextField();
+        sp.putConstraint(SpringLayout.NORTH, txtIzena, 10, SpringLayout.NORTH, contenedor);
+        sp.putConstraint(SpringLayout.WEST, txtIzena, 59, SpringLayout.EAST, lblIzena);
+        sp.putConstraint(SpringLayout.EAST, txtIzena, -380, SpringLayout.EAST, contenedor);
         contenedor.add(txtIzena);
-        sp.putConstraint(SpringLayout.NORTH, txtIzena, 10,
-                        SpringLayout.NORTH, contenedor);
-        sp.putConstraint(SpringLayout.WEST, txtIzena, 100,
-                        SpringLayout.WEST, contenedor);
-        sp.putConstraint(SpringLayout.EAST, txtIzena, 300,
-                        SpringLayout.WEST, contenedor);
         //CUADRO DE TEXTO PARA EL NIF
         txtAbizena = new JTextField();
-        sp.putConstraint(SpringLayout.NORTH, lblKokapena, 3, SpringLayout.NORTH, txtAbizena);
-        contenedor.add(txtAbizena);    //añadir al contenedor
-        sp.putConstraint(SpringLayout.NORTH, txtAbizena, 50,
-                        SpringLayout.NORTH, contenedor);
-        sp.putConstraint(SpringLayout.WEST, txtAbizena, 100,
+        sp.putConstraint(SpringLayout.NORTH, txtAbizena, 20, SpringLayout.SOUTH, txtIzena);
+        sp.putConstraint(SpringLayout.WEST, txtAbizena, 50, SpringLayout.EAST, lblKokapena);
+        sp.putConstraint(SpringLayout.EAST, txtAbizena, 244,
                         SpringLayout.WEST, contenedor);
-        sp.putConstraint(SpringLayout.EAST, txtAbizena, 300,
-                        SpringLayout.WEST, contenedor);
+        contenedor.add(txtAbizena);
         /**************** EOF CUADROS DE  TEXTO ^^^^^^^^^ **/
  
         /**************** BOF TABLA  vvvvvvvvvvvvvvvvvvvv **/
@@ -111,7 +111,12 @@ public class EnplegatuaKudeatu extends JFrame {
         		new JScrollPane();
         cabecera    = new String[] {"ID","IZENA","SOLDATA","ALTA DATA","ALTA ORDUA","ZUZENDARIA","DEPT.","ARDURA"};
         dtm         = new DefaultTableModel(enplegatuakIkusi(eredua.Kontsultak.EnplegatuakIkusi()),cabecera);
-        tabla       = new JTable(dtm);
+        tabla       = new JTable(dtm) {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+        tabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scroll.setViewportView(tabla);
         //y ahora se coloca el scrollpane...
         contenedor.add(scroll); //añadir al contenedor
@@ -164,6 +169,41 @@ public class EnplegatuaKudeatu extends JFrame {
         sp.putConstraint(SpringLayout.SOUTH, button, 0, SpringLayout.SOUTH, btnAdd);
         sp.putConstraint(SpringLayout.EAST, button, -25, SpringLayout.EAST, contenedor);
         contenedor.add(button);
+        
+        button_1 = new JButton("Baieztatu");
+        sp.putConstraint(SpringLayout.NORTH, button_1, -15, SpringLayout.NORTH, lblKokapena);
+        sp.putConstraint(SpringLayout.WEST, button_1, 0, SpringLayout.WEST, button);
+        sp.putConstraint(SpringLayout.SOUTH, button_1, -37, SpringLayout.NORTH, scroll);
+        sp.putConstraint(SpringLayout.EAST, button_1, -27, SpringLayout.EAST, contenedor);
+        button_1.setEnabled(false);
+        contenedor.add(button_1);
+        
+        JCheckBox cboxZuzendaria = new JCheckBox("Zuzendaria");
+        sp.putConstraint(SpringLayout.WEST, cboxZuzendaria, 100, SpringLayout.WEST, contenedor);
+        sp.putConstraint(SpringLayout.SOUTH, cboxZuzendaria, -6, SpringLayout.NORTH, scroll);
+        contenedor.add(cboxZuzendaria);
+        
+        JComboBox cbDept = new JComboBox();
+        sp.putConstraint(SpringLayout.NORTH, cbDept, 7, SpringLayout.NORTH, contenedor);
+        sp.putConstraint(SpringLayout.EAST, cbDept, -128, SpringLayout.EAST, contenedor);
+        contenedor.add(cbDept);
+        
+        JLabel lblDept = new JLabel("Departamentua:");
+        sp.putConstraint(SpringLayout.WEST, cbDept, 16, SpringLayout.EAST, lblDept);
+        sp.putConstraint(SpringLayout.NORTH, lblDept, 0, SpringLayout.NORTH, lblIzena);
+        sp.putConstraint(SpringLayout.WEST, lblDept, 23, SpringLayout.EAST, txtIzena);
+        contenedor.add(lblDept);
+        
+        JLabel lblArdura = new JLabel("Ardura:");
+        sp.putConstraint(SpringLayout.NORTH, lblArdura, 0, SpringLayout.NORTH, lblKokapena);
+        sp.putConstraint(SpringLayout.EAST, lblArdura, 0, SpringLayout.EAST, lblDept);
+        contenedor.add(lblArdura);
+        
+        JComboBox cbArdura = new JComboBox();
+        sp.putConstraint(SpringLayout.NORTH, cbArdura, 26, SpringLayout.SOUTH, cbDept);
+        sp.putConstraint(SpringLayout.WEST, cbArdura, 0, SpringLayout.WEST, cbDept);
+        sp.putConstraint(SpringLayout.EAST, cbArdura, 0, SpringLayout.EAST, cbDept);
+        contenedor.add(cbArdura);
         /**************** EOF BOTONES ^^^^^^^^^^^^^^^^^^^^ **/
  
         //Se hace visible la ventana
@@ -187,6 +227,4 @@ public class EnplegatuaKudeatu extends JFrame {
     
     	return data;
     }
-    
-    
 }
