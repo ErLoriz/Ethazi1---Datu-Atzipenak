@@ -92,7 +92,7 @@ public class DepartamentuaKudeatu extends JFrame {
 		sp.putConstraint(SpringLayout.WEST, lblIzena, 0, SpringLayout.WEST, scroll);
 		sp.putConstraint(SpringLayout.SOUTH, lblIzena, -53, SpringLayout.NORTH, scroll);
 		cabecera = new String[] { "ID", "IZENA", "KOKAPENA" };
-		dtm = new DefaultTableModel(departamentuaIkusi(eredua.Kontsultak.DepartamentuakIkusi()), cabecera);
+		dtm = new DefaultTableModel(kontroladorea.Metodoak.departamentuaIkusi(eredua.Kontsultak.DepartamentuakIkusi()), cabecera);
 		tabla = new JTable(dtm) {
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -161,22 +161,5 @@ public class DepartamentuaKudeatu extends JFrame {
 		setVisible(true);
 	}
 
-	public static String[][] departamentuaIkusi(ArrayList<Departamentua> d1) {
-		String[][] data = new String[d1.size()][3];
-
-		for (int i = 0; i <= d1.size() - 1; i++) {
-
-			data[i][0] = Integer.toString(d1.get(i).getIdDepartamentua());
-			data[i][1] = d1.get(i).getIzena();
-			data[i][2] = d1.get(i).getKokapena();
-
-		}
-
-		return data;
-	}
-
-	public boolean isCellEditable(int rowIndex, int colIndex) {
-		return false;
-	}
 
 }
