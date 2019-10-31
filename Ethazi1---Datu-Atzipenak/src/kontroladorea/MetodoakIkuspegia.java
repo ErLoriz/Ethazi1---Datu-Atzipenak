@@ -1,6 +1,9 @@
 package kontroladorea;
 
 import ikuspegia.*;
+
+import java.util.ArrayList;
+
 import eredua.*;
 
 public class MetodoakIkuspegia {

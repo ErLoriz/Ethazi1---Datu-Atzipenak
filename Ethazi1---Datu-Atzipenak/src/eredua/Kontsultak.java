@@ -16,7 +16,7 @@ import kontroladorea.*;
 public class Kontsultak {
 
 	public static ArrayList <Enplegatua> EnplegatuakIkusi(){
-		ArrayList <Enplegatua> Apartamentuak = new ArrayList<Enplegatua>();
+		ArrayList <Enplegatua> Enplegatuak = new ArrayList<Enplegatua>();
 		int idEnplegatua=0;
 		String izena=null;
 		double soldata;
@@ -48,7 +48,8 @@ public class Kontsultak {
 				zuzendari = rs.getString("zuzendari");
 				zuzendariBoolean = e.zuzendariaStringToBoolean(zuzendari);
 				Enplegatua e1 = new Enplegatua (idEnplegatua, izena, soldata, altaData,	altaOrdua,	Departamentua_idDepartamentua, Ardura_idArdura, zuzendariBoolean);
-				Apartamentuak.add(e1);
+				Enplegatua e2 = new Enplegatua (Enplegatuak);
+				Enplegatuak.add(e1);
 
 			}
 			
@@ -60,7 +61,7 @@ public class Kontsultak {
 		}
 		
 		
-		return Apartamentuak;
+		return Enplegatuak;
 	}
 	
 	public static ArrayList <Departamentua> DepartamentuakIkusi(){
@@ -157,6 +158,7 @@ public class Kontsultak {
 
 	   }
 	   
+	   
 	  
 	   
 	} catch (FileNotFoundException y) {
@@ -177,6 +179,39 @@ public class Kontsultak {
 	           
 	return enplegatuak;
 
+	}
+	
+	public static ArrayList <Ardura> ArdurakIkusi(){
+		ArrayList <Ardura> Ardurak = new ArrayList<Ardura>();
+		int idArdura=0;
+		String izenArdura=null;
+	
+		
+		Connection Conexion = (Connection) Konexioa.getConnection();
+		Statement s =null;
+
+		try {
+			
+			s =(Statement) Conexion.createStatement();
+
+			ResultSet rs = ((java.sql.Statement) s).executeQuery("SELECT idArdura, izenArdura FROM `ardura`");
+			while (rs.next()) {
+				idArdura = rs.getInt(1);
+				izenArdura = rs.getString(2);
+				Ardura a1 = new Ardura(idArdura, izenArdura);
+				Ardurak.add(a1);
+
+			}
+			
+			System.out.println();
+			System.out.println("Conexioa eginda");
+		}catch(Exception y) {
+			System.out.println(y.getMessage());
+			
+		}
+		
+		
+		return Ardurak;
 	}
 	
 }

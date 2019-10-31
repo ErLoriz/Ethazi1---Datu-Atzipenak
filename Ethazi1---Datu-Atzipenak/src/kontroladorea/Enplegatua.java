@@ -1,6 +1,15 @@
 package kontroladorea;
 
+import java.util.ArrayList;
+
 public class Enplegatua {
+
+	public Enplegatua(ArrayList enplegatuak) {
+		super();
+		this.enplegatuak = enplegatuak;
+	}
+
+
 
 	public Enplegatua() {
 		
@@ -14,6 +23,7 @@ public class Enplegatua {
 	private int Departamentua_idDepartamentua;
 	private int Ardura_idArdura;
 	private boolean zuzendari;
+	private ArrayList enplegatuak;
 	
 		public Enplegatua(int idEnplegatua, String izena, double soldata, String altaData, String altaOrdua,
 			int departamentua_idDepartamentua, int ardura_idArdura, boolean zuzendari) {
@@ -27,6 +37,8 @@ public class Enplegatua {
 		Ardura_idArdura = ardura_idArdura;
 		this.zuzendari = zuzendari;
 	}
+		
+	
 	
 	public int getIdEnplegatua() {
 		return idEnplegatua;
@@ -107,6 +119,18 @@ public class Enplegatua {
 
 	public void setZuzendari(boolean zuzendari) {
 		this.zuzendari = zuzendari;
+	}
+
+
+
+	public ArrayList getEnplegatuak() {
+		return enplegatuak;
+	}
+
+
+
+	public void setEnplegatuak(ArrayList enplegatuak) {
+		this.enplegatuak = enplegatuak;
 	}
 	
 	
