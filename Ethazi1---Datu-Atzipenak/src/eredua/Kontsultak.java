@@ -214,4 +214,56 @@ public class Kontsultak {
 		return Ardurak;
 	}
 	
+	public static int DepartamentuIdLortu(String izena) {
+		int idDepartamentua=0;
+	
+		
+		Connection Conexion = (Connection) Konexioa.getConnection();
+		Statement s =null;
+
+		try {
+			
+			s =(Statement) Conexion.createStatement();
+
+			ResultSet rs = ((java.sql.Statement) s).executeQuery("SELECT idDepartamentua FROM `departamentua` WHERE izena LIKE '"+izena+"'");
+			while (rs.next()) {
+				idDepartamentua = rs.getInt(1);
+
+			}
+			
+			System.out.println();
+			System.out.println("Conexioa eginda");
+		}catch(Exception y) {
+			System.out.println(y.getMessage());
+			
+		}
+		return idDepartamentua;
+	}
+	
+	public static int ArduraIdLortu(String izena) {
+		int idArdura=0;
+	
+		
+		Connection Conexion = (Connection) Konexioa.getConnection();
+		Statement s =null;
+
+		try {
+			
+			s =(Statement) Conexion.createStatement();
+
+			ResultSet rs = ((java.sql.Statement) s).executeQuery("SELECT idArdura FROM `ardura` WHERE izenArdura LIKE '"+izena+"'");
+			while (rs.next()) {
+				idArdura = rs.getInt(1);
+
+			}
+			
+			System.out.println();
+			System.out.println("Conexioa eginda");
+		}catch(Exception y) {
+			System.out.println(y.getMessage());
+			
+		}
+		return idArdura;
+	}
+	
 }

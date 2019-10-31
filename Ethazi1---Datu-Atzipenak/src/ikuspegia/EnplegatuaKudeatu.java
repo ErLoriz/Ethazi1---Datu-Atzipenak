@@ -66,6 +66,9 @@ public class EnplegatuaKudeatu extends JFrame {
     private JTextField textBilatu;
     private JCheckBox cboxZuzendaria;
     
+    private JComboBox cbDept = new JComboBox();
+    JComboBox cbArdura = new JComboBox();
+    
     static String zuzendaria = "false";
     
     private String[] ardurak;
@@ -164,6 +167,8 @@ public class EnplegatuaKudeatu extends JFrame {
         btnAdd.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		boolean beteta = true;
+        		int idDept = 0;
+        		int idArdura = 0;
         		
         		if(txtIzena.getText().equals("")) {
         			beteta = false;
@@ -176,19 +181,22 @@ public class EnplegatuaKudeatu extends JFrame {
         		
         		if(beteta == true) {
         		SimpleDateFormat data = new SimpleDateFormat("yyyy/MM/dd");
+        		SimpleDateFormat ordua = new SimpleDateFormat("HH:mm");
         		
         		int id = dtm.getRowCount()+1;
         		String izena = txtIzena.getText();
         		String soldata = txtSoldata.getText();
         		Date altaData = new Date();
-        		String altaOrdua = LocalDateTime.now().getHour() + ":" + LocalDateTime.now().getMinute();
-        		String dept = "Informatika";
-        		String ardura = "Irakaslea";
+        		Date altaOrdua = new Date();
+        		idDept = Metodoak.departamentuIdLortu(cbDept.getSelectedItem().toString());
+        		idArdura = Metodoak.arduraIdLortu(cbArdura.getSelectedItem().toString());
         		
-        		dtm.addRow(new Object[] {id, izena, soldata, data.format(altaData), altaOrdua, zuzendaria, dept, ardura});
+        		dtm.addRow(new Object[] {id, izena, soldata, data.format(altaData), ordua.format(altaOrdua), zuzendaria, idDept, idArdura});
+        		Metodoak.sartuEnplegatua(id, izena, Double.parseDouble(soldata), data.format(altaData), ordua.format(altaOrdua), zuzendaria, idDept, idArdura);
         		}
         	}
         });
+        
         contenedor.add(btnAdd);
         sp.putConstraint(SpringLayout.SOUTH, btnAdd, -10,
                         SpringLayout.SOUTH, contenedor);//colocarlo
@@ -247,7 +255,7 @@ public class EnplegatuaKudeatu extends JFrame {
         sp.putConstraint(SpringLayout.WEST, cboxZuzendaria, 99, SpringLayout.WEST, contenedor);
         contenedor.add(cboxZuzendaria);
         
-        JComboBox cbDept = new JComboBox();
+        
         sp.putConstraint(SpringLayout.NORTH, cbDept, -3, SpringLayout.NORTH, lblIzena);
         sp.putConstraint(SpringLayout.EAST, cbDept, -128, SpringLayout.EAST, contenedor);
         contenedor.add(cbDept);
@@ -266,7 +274,7 @@ public class EnplegatuaKudeatu extends JFrame {
         sp.putConstraint(SpringLayout.WEST, lblArdura, 0, SpringLayout.WEST, btnUpd);
         contenedor.add(lblArdura);
         
-        JComboBox cbArdura = new JComboBox();
+        
         sp.putConstraint(SpringLayout.WEST, cbArdura, 15, SpringLayout.EAST, lblArdura);
         sp.putConstraint(SpringLayout.EAST, cbArdura, -128, SpringLayout.EAST, contenedor);
         sp.putConstraint(SpringLayout.WEST, cbDept, 0, SpringLayout.WEST, cbArdura);

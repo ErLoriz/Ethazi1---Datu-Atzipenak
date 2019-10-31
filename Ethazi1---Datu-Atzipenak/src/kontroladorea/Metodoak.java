@@ -2,6 +2,7 @@ package kontroladorea;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JScrollPane;
 
@@ -86,6 +87,36 @@ public class Metodoak {
 		}
 
 		return data;
+	}
+	
+	public static int departamentuIdLortu(String izena) {
+		return Kontsultak.DepartamentuIdLortu(izena);
+	}
+	
+	public static int arduraIdLortu(String izena) {
+		return Kontsultak.ArduraIdLortu(izena);
+	}
+	
+	public static void sartuEnplegatua(int id, String izena, Double soldata, String altaData, String altaOrdua, String zuzendaria, int idDept, int idArdura) {
+		boolean zuzendariBoolean = false;
+		
+		if(zuzendaria.equalsIgnoreCase("false"))
+			zuzendariBoolean = false;
+		else if(zuzendaria.equalsIgnoreCase("true"))
+			zuzendariBoolean = true;
+		
+		Enplegatua e1 = new Enplegatua();
+		
+		e1.setIdEnplegatua(id);
+		e1.setIzena(izena);
+		e1.setSoldata(soldata);
+		e1.setAltaData(altaData);
+		e1.setAltaOrdua(altaOrdua);
+		e1.setZuzendari(zuzendariBoolean);
+		e1.setDepartamentua_idDepartamentua(idDept);
+		e1.setArdura_idArdura(idArdura);
+		
+		Insertak.sartuErabiltzailea(e1);
 	}
 	
 }
