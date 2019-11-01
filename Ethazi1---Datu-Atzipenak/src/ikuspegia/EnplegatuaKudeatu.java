@@ -44,11 +44,11 @@ public class EnplegatuaKudeatu extends JFrame {
     //DEFINICIÓN DE LAS ETIQUETAS
     private JLabel lblIzena;
     private JLabel lblKokapena;
- 
+
     //DEFINICIÓN DE LOS CUADROS DE TEXTO
     protected JTextField txtIzena;
     protected JTextField txtSoldata;
- 
+
     //DEFINICIÓN DE LOS BOTONES
     protected JButton btnAdd;
     protected JButton btnDel;

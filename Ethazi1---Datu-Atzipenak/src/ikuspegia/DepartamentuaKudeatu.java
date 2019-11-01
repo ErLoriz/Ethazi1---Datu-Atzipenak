@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import eredua.Update;
 import kontroladorea.Departamentua;
 import kontroladorea.Enplegatua;
 import kontroladorea.Metodoak;
@@ -216,6 +217,8 @@ public class DepartamentuaKudeatu extends JFrame {
         		if(txtIzena.getText().equals("") || txtKokapena.getText().equals("")) {
         			JOptionPane.showMessageDialog(null, "Ez utzi informazioa utzik, mesedez.");
         		} else {
+        			String idDeptString;
+    				int idDept;
 
         			dtm.setValueAt(txtIzena.getText(), aukeratutakoLerroa, 1);
         			dtm.setValueAt(txtKokapena.getText(), aukeratutakoLerroa, 2);
@@ -225,9 +228,13 @@ public class DepartamentuaKudeatu extends JFrame {
     				btnDel.setEnabled(true);
     				textBilatuID.setEnabled(true);
     				
+    				idDeptString = (String)dtm.getValueAt(tabla.getSelectedRow(), 0);
+    				idDept = Integer.parseInt(idDeptString);
+    				
+    				Update.departamentuaAldatu(idDept, txtIzena.getText(), txtKokapena.getText());
+    				
     				txtIzena.setText("");
     				txtKokapena.setText("");
-        			
         		}
 				
 			}
