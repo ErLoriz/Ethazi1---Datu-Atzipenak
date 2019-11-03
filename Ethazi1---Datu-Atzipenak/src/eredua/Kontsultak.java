@@ -240,6 +240,32 @@ public class Kontsultak {
 		return idDepartamentua;
 	}
 	
+	public static String DepartamentuIzenaLortu(int idDept) {
+		String izena="";
+	
+		
+		Connection Conexion = (Connection) Konexioa.getConnection();
+		Statement s =null;
+
+		try {
+			
+			s =(Statement) Conexion.createStatement();
+
+			ResultSet rs = ((java.sql.Statement) s).executeQuery("SELECT izena FROM `departamentua` WHERE idDepartamentua LIKE '"+idDept+"'");
+			while (rs.next()) {
+				izena = rs.getString(1);
+
+			}
+			
+			System.out.println();
+			System.out.println("Conexioa eginda");
+		}catch(Exception y) {
+			System.out.println(y.getMessage());
+			
+		}
+		return izena;
+	}
+	
 	public static int ArduraIdLortu(String izena) {
 		int idArdura=0;
 	
@@ -264,6 +290,32 @@ public class Kontsultak {
 			
 		}
 		return idArdura;
+	}
+	
+	public static String ArduraIzenaLortu(int idArdura) {
+		String izena="";
+	
+		
+		Connection Conexion = (Connection) Konexioa.getConnection();
+		Statement s =null;
+
+		try {
+			
+			s =(Statement) Conexion.createStatement();
+
+			ResultSet rs = ((java.sql.Statement) s).executeQuery("SELECT izenArdura FROM `ardura` WHERE idArdura LIKE '"+idArdura+"'");
+			while (rs.next()) {
+				izena = rs.getString(1);
+
+			}
+			
+			System.out.println();
+			System.out.println("Conexioa eginda");
+		}catch(Exception y) {
+			System.out.println(y.getMessage());
+			
+		}
+		return izena;
 	}
 	
 }

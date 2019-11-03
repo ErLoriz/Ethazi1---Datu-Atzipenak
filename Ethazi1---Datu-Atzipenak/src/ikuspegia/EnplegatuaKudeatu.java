@@ -11,6 +11,7 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import eredua.Kontsultak;
 import kontroladorea.Departamentua;
 import kontroladorea.Enplegatua;
 import kontroladorea.Metodoak;
@@ -60,8 +61,8 @@ public class EnplegatuaKudeatu extends JFrame {
     protected String[] cabecera;    //Cabecera de la tabla
     protected DefaultTableModel dtm;//Unión de la cabecera y la tabla
     protected JTable tabla; //Tabla propiamente dicha
-    private JButton button;
-    private JButton button_1;
+    private JButton btnIrten;
+    private JButton btnBaieztatu;
     private JLabel lblBilatu;
     private JTextField textBilatu;
     private JCheckBox cboxZuzendaria;
@@ -213,13 +214,40 @@ public class EnplegatuaKudeatu extends JFrame {
         btnUpd          = new JButton("Editatu");
         btnUpd.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		
+        		String zuzendariString="";
+        		boolean zuzendariBoolean=false;
+        		String departamentuIzena="";
+        		String arduraIzena="";
         		int i = tabla.getSelectedRow();
         		
         		if(i == -1) {
         			JOptionPane.showMessageDialog(null, "Mesedez, aukeratu lerro bat."); 
         		} else {
+        			btnAdd.setEnabled(false);
+        			btnDel.setEnabled(false);
+        			textBilatu.setEnabled(false);
+        			lblBilatu.setEnabled(false);
+        			btnBaieztatu.setEnabled(true);
         			
+        			txtIzena.setText((String) dtm.getValueAt(tabla.getSelectedRow(), 1));
+        			txtSoldata.setText((String) dtm.getValueAt(tabla.getSelectedRow(), 2));
+        			
+        			zuzendariString = (String) dtm.getValueAt(tabla.getSelectedRow(), 5);
+        			if(zuzendariString.equalsIgnoreCase("true"))
+        				zuzendariBoolean = true;
+        			else
+        				zuzendariBoolean = false;
+        			
+        			if(zuzendariBoolean==true)
+        				cboxZuzendaria.setSelected(true);
+        			else 
+        				cboxZuzendaria.setSelected(false);
+        			
+        			departamentuIzena = Kontsultak.DepartamentuIzenaLortu(Integer.parseInt(dtm.getValueAt(tabla.getSelectedRow(), 6).toString()));
+        			cbDept.setSelectedItem(departamentuIzena);
+        			
+        			arduraIzena = Kontsultak.ArduraIzenaLortu(Integer.parseInt(dtm.getValueAt(tabla.getSelectedRow(), 7).toString()));
+        			cbArdura.setSelectedItem(arduraIzena);
         		}
         		
         	}
@@ -230,26 +258,26 @@ public class EnplegatuaKudeatu extends JFrame {
         sp.putConstraint(SpringLayout.WEST, btnUpd,  310,
                         SpringLayout.WEST, contenedor);
         
-        button = new JButton("Irten");
-        sp.putConstraint(SpringLayout.NORTH, button, 6, SpringLayout.SOUTH, scroll);
-        sp.putConstraint(SpringLayout.WEST, button, 143, SpringLayout.EAST, btnUpd);
-        sp.putConstraint(SpringLayout.SOUTH, button, -10, SpringLayout.SOUTH, contenedor);
-        sp.putConstraint(SpringLayout.EAST, button, -25, SpringLayout.EAST, contenedor);
-        button.addActionListener(new ActionListener() {
+        btnIrten = new JButton("Irten");
+        sp.putConstraint(SpringLayout.NORTH, btnIrten, 6, SpringLayout.SOUTH, scroll);
+        sp.putConstraint(SpringLayout.WEST, btnIrten, 143, SpringLayout.EAST, btnUpd);
+        sp.putConstraint(SpringLayout.SOUTH, btnIrten, -10, SpringLayout.SOUTH, contenedor);
+        sp.putConstraint(SpringLayout.EAST, btnIrten, -25, SpringLayout.EAST, contenedor);
+        btnIrten.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		MetodoakIkuspegia.pasatuMenura();
         		dispose();
         	}
         });
-        contenedor.add(button);
+        contenedor.add(btnIrten);
         
-        button_1 = new JButton("Baieztatu");
-        sp.putConstraint(SpringLayout.NORTH, button_1, 58, SpringLayout.NORTH, contenedor);
-        sp.putConstraint(SpringLayout.WEST, button_1, 0, SpringLayout.WEST, button);
-        sp.putConstraint(SpringLayout.SOUTH, button_1, -73, SpringLayout.NORTH, scroll);
-        sp.putConstraint(SpringLayout.EAST, button_1, -27, SpringLayout.EAST, contenedor);
-        button_1.setEnabled(false);
-        contenedor.add(button_1);
+        btnBaieztatu = new JButton("Baieztatu");
+        sp.putConstraint(SpringLayout.NORTH, btnBaieztatu, 58, SpringLayout.NORTH, contenedor);
+        sp.putConstraint(SpringLayout.WEST, btnBaieztatu, 0, SpringLayout.WEST, btnIrten);
+        sp.putConstraint(SpringLayout.SOUTH, btnBaieztatu, -73, SpringLayout.NORTH, scroll);
+        sp.putConstraint(SpringLayout.EAST, btnBaieztatu, -27, SpringLayout.EAST, contenedor);
+        btnBaieztatu.setEnabled(false);
+        contenedor.add(btnBaieztatu);
         
         sp.putConstraint(SpringLayout.NORTH, cboxZuzendaria, 14, SpringLayout.SOUTH, txtSoldata);
         sp.putConstraint(SpringLayout.WEST, cboxZuzendaria, 99, SpringLayout.WEST, contenedor);

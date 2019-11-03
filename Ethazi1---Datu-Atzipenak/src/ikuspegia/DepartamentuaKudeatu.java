@@ -308,7 +308,7 @@ public class DepartamentuaKudeatu extends JFrame {
 		setVisible(true);
 	}
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable(){
             public void run() {
                JFrame frame = new JFrame("Row Filter");
@@ -320,7 +320,7 @@ public class DepartamentuaKudeatu extends JFrame {
             }
 
         });
-    }
+    }*/
 	
 
 }
