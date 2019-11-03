@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import eredua.Kontsultak;
+import eredua.Update;
 import kontroladorea.Departamentua;
 import kontroladorea.Enplegatua;
 import kontroladorea.Metodoak;
@@ -272,6 +273,32 @@ public class EnplegatuaKudeatu extends JFrame {
         contenedor.add(btnIrten);
         
         btnBaieztatu = new JButton("Baieztatu");
+        btnBaieztatu.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		if(txtIzena.getText().equals("") || txtSoldata.getText().equals("")) {
+        			JOptionPane.showMessageDialog(null, "Ez utzi informazioa utzik, mesedez.");
+        		}else {
+        			dtm.setValueAt(txtIzena.getText(), tabla.getSelectedRow(), 1);
+        			dtm.setValueAt(txtSoldata.getText(), tabla.getSelectedRow(), 2);
+        			
+        			if(cboxZuzendaria.isSelected()) 
+        				dtm.setValueAt("true", tabla.getSelectedRow(), 5);
+        			else
+        				dtm.setValueAt("false", tabla.getSelectedRow(), 5);
+        			
+        			dtm.setValueAt(Kontsultak.DepartamentuIdLortu(cbDept.getSelectedItem().toString()), tabla.getSelectedRow(), 6);
+        			dtm.setValueAt(Kontsultak.ArduraIdLortu(cbArdura.getSelectedItem().toString()), tabla.getSelectedRow(), 7);
+        			
+        			Update.EnplegatuaAldatu(Integer.parseInt(dtm.getValueAt(tabla.getSelectedRow(), 0).toString()), txtIzena.getText(), txtSoldata.getText(), dtm.getValueAt(tabla.getSelectedRow(), 5).toString(), Integer.parseInt(dtm.getValueAt(tabla.getSelectedRow(), 6).toString()), Integer.parseInt(dtm.getValueAt(tabla.getSelectedRow(), 7).toString()));
+        			
+        			txtIzena.setText("");
+    				txtSoldata.setText("");
+    				
+    				btnAdd.setEnabled(true);
+    				btnDel.setEnabled(true);
+        		}
+        	}
+        });
         sp.putConstraint(SpringLayout.NORTH, btnBaieztatu, 58, SpringLayout.NORTH, contenedor);
         sp.putConstraint(SpringLayout.WEST, btnBaieztatu, 0, SpringLayout.WEST, btnIrten);
         sp.putConstraint(SpringLayout.SOUTH, btnBaieztatu, -73, SpringLayout.NORTH, scroll);

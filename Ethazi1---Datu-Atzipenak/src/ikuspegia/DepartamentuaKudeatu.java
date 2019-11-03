@@ -179,7 +179,6 @@ public class DepartamentuaKudeatu extends JFrame {
 					txtIzena.setText((String) dtm.getValueAt(tabla.getSelectedRow(), 1));
 					txtKokapena.setText((String) dtm.getValueAt(tabla.getSelectedRow(), 2));
 					
-					aukeratutakoLerroa = tabla.getSelectedRow();
 					
 					btnBaieztatu.setEnabled(true);
 					btnAdd.setEnabled(false);
@@ -231,7 +230,7 @@ public class DepartamentuaKudeatu extends JFrame {
     				idDeptString = (String)dtm.getValueAt(tabla.getSelectedRow(), 0);
     				idDept = Integer.parseInt(idDeptString);
     				
-    				Update.departamentuaAldatu(idDept, txtIzena.getText(), txtKokapena.getText());
+    				Update.DepartamentuaAldatu(idDept, txtIzena.getText(), txtKokapena.getText());
     				
     				txtIzena.setText("");
     				txtKokapena.setText("");
