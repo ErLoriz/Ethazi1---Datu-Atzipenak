@@ -155,7 +155,9 @@ public class DepartamentuaKudeatu extends JFrame {
 				if(tabla.getSelectedRow() == -1) {
 					JOptionPane.showMessageDialog(null, "Aukeratu lerro bat, mesedez.");
 				} else {
-					dtm.removeRow(tabla.getSelectedRow());
+					int lerroAukeratu = tabla.convertRowIndexToModel(tabla.getSelectedRow());
+					((DefaultTableModel)tabla.getModel()).removeRow(lerroAukeratu);
+					
 				}
 				
 			}
@@ -176,16 +178,18 @@ public class DepartamentuaKudeatu extends JFrame {
 					btnDel.setEnabled(false);
 					textBilatuID.setEnabled(false);
 					
-					txtIzena.setText((String) dtm.getValueAt(tabla.getSelectedRow(), 1));
-					txtKokapena.setText((String) dtm.getValueAt(tabla.getSelectedRow(), 2));
+					int lerroAukeratu = tabla.convertRowIndexToModel(tabla.getSelectedRow());
+					
+					txtIzena.setText((String) dtm.getValueAt(lerroAukeratu, 1));
+					txtKokapena.setText((String) dtm.getValueAt(lerroAukeratu, 2));
 					
 					
 					btnBaieztatu.setEnabled(true);
 					btnAdd.setEnabled(false);
 					btnDel.setEnabled(false);
 					
-					txtIzena.setText((String) dtm.getValueAt(tabla.getSelectedRow(), 1));
-					txtKokapena.setText((String) dtm.getValueAt(tabla.getSelectedRow(), 2));
+					txtIzena.setText((String) dtm.getValueAt(lerroAukeratu, 1));
+					txtKokapena.setText((String) dtm.getValueAt(lerroAukeratu, 2));
 					
 					aukeratutakoLerroa = tabla.getSelectedRow();
 				}
