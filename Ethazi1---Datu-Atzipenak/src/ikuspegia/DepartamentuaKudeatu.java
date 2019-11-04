@@ -158,7 +158,7 @@ public class DepartamentuaKudeatu extends JFrame {
 					JOptionPane.showMessageDialog(null, "Aukeratu lerro bat, mesedez.");
 				} else {
 					int lerroAukeratu = tabla.convertRowIndexToModel(tabla.getSelectedRow());
-					Delete.DepartamentuaEzabatu(Integer.parseInt(dtm.getValueAt(lerroAukeratu, 0).toString()));
+					Metodoak.ezabatuDepartamentua(Integer.parseInt(dtm.getValueAt(lerroAukeratu, 0).toString()));
 					((DefaultTableModel)tabla.getModel()).removeRow(lerroAukeratu);
 					
 				}
@@ -242,7 +242,7 @@ public class DepartamentuaKudeatu extends JFrame {
     				idDeptString = (String)dtm.getValueAt(lerroAukeratu, 0);
     				idDept = Integer.parseInt(idDeptString);
     				
-    				Update.DepartamentuaAldatu(idDept, txtIzena.getText(), txtKokapena.getText());
+    				Metodoak.aldatuDepartamentua(idDept, txtIzena.getText(), txtKokapena.getText());
     				
     				txtIzena.setText("");
     				txtKokapena.setText("");
