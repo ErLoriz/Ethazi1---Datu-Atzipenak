@@ -16,6 +16,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import eredua.Delete;
+import eredua.Insertak;
 import eredua.Update;
 import kontroladorea.Departamentua;
 import kontroladorea.Enplegatua;
@@ -137,7 +138,7 @@ public class DepartamentuaKudeatu extends JFrame {
         			int id = dtm.getRowCount() + 101;
 	        		String izena = txtIzena.getText();
 	        		String kokapena = txtKokapena.getText();
-        		
+	        		Metodoak.sartuDepartamentua(id, izena, kokapena);
 	        		dtm.addRow(new Object[] {id + 1, izena, kokapena});
         		}
         		

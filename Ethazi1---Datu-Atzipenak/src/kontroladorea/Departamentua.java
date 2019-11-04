@@ -2,6 +2,10 @@ package kontroladorea;
 
 public class Departamentua {
 
+	public Departamentua() {
+		super();
+	}
+
 	private int idDepartamentua;
 	private String izena;	
 	private String kokapena;

@@ -141,4 +141,14 @@ public class Metodoak {
 		Insertak.sartuErabiltzailea(e1);
 	}
 	
+	public static void sartuDepartamentua(int id, String izena, String kokapena) {
+		Departamentua d1 = new Departamentua();
+		
+		d1.setIdDepartamentua(id);
+		d1.setIzena(izena);
+		d1.setKokapena(kokapena);
+		
+		Insertak.SartuDepartamentua(d1);
+	}
+	
 }

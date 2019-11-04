@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.mysql.jdbc.Statement;
 
+import kontroladorea.Departamentua;
 import kontroladorea.Enplegatua;
 
 public class Insertak {
@@ -38,6 +39,38 @@ public class Insertak {
 			preparedStmt.setString(6, zuzendari);
 			preparedStmt.setInt(7, e1.getDepartamentua_idDepartamentua());
 			preparedStmt.setInt(8, e1.getArdura_idArdura());
+
+			preparedStmt.execute();
+
+			System.out.println("Sartuta");
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+	}
+	
+	public static void SartuDepartamentua(Departamentua d1) {
+
+		Connection conexion = null;
+		Statement s = null;
+		String zuzendari = null;
+
+		try {
+			// Cargar el driver
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/elorrieta", "root", "");
+			s = (Statement) conexion.createStatement();
+
+			// Se realiza la consulta. Los resultados se guardan en el ResultSet rs
+
+			String query = "INSERT INTO departamentua(idDepartamentua,izena,kokapena)"
+					+ " VALUES(?,?,?)";
+
+			PreparedStatement preparedStmt = (PreparedStatement) conexion.prepareStatement(query);
+			preparedStmt.setInt(1, d1.getIdDepartamentua());
+			preparedStmt.setString(2, d1.getIzena());
+			preparedStmt.setString(3, d1.getKokapena());
 
 			preparedStmt.execute();
 
