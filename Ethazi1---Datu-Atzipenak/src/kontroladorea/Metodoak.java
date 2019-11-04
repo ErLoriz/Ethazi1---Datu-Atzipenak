@@ -20,6 +20,8 @@ public class Metodoak {
 	
     public static String[][] enplegatuakIkusi(){
     	ArrayList <Enplegatua> e1 = new ArrayList();
+    	ArrayList <Departamentua> d1 = new ArrayList();
+    	ArrayList <Ardura> a1 = new ArrayList();
     	e1 = Kontsultak.EnplegatuakIkusi();
     	String[][] data = new String[e1.size()][8];
     	
@@ -30,7 +32,27 @@ public class Metodoak {
 	    	data[i][2] = Double.toString(e1.get(i).getSoldata());
 	    	data[i][3] = e1.get(i).getAltaData();
 	    	data[i][4] = e1.get(i).getAltaOrdua();
-	    	data[i][5] = Boolean.toString(e1.get(i).getZuzendari());
+	    	
+	    	if(e1.get(i).getZuzendari() == true) {
+	    		data[i][5] = "Bai";
+	    	} else {
+	    		data[i][5] = "Ez";
+	    	}
+	    	
+	    	/*for(int x = 0; i <= d1.size() - 1; i++) {
+	    		if(d1.get(x).getIdDepartamentua() == e1.get(i).getDepartamentua_idDepartamentua()) {
+	    			System.out.println(d1.get(x).getIzena());
+	    			data[i][6] = d1.get(x).getIzena();
+	    		}
+	    	}
+	    	
+	    	for(int x = 0; i <= a1.size() - 1; i++) {
+	    		if(a1.get(x).getIdArdura() == e1.get(i).getArdura_idArdura()) {
+	    			data[i][7] = a1.get(x).getIzenArdura();
+	    		}
+	    	}
+	    	
+	    	data[i][5] = Boolean.toString(e1.get(i).getZuzendari());*/
 	    	data[i][6] = Integer.toString(e1.get(i).getDepartamentua_idDepartamentua());
 	    	data[i][7] = Integer.toString(e1.get(i).getArdura_idArdura());
     	}

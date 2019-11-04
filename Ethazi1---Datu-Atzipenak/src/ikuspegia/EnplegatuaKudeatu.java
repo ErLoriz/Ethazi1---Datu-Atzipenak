@@ -9,7 +9,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import eredua.Kontsultak;
 import eredua.Update;
@@ -36,6 +40,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 
 public class EnplegatuaKudeatu extends JFrame {
 
@@ -65,7 +70,7 @@ public class EnplegatuaKudeatu extends JFrame {
     private JButton btnIrten;
     private JButton btnBaieztatu;
     private JLabel lblBilatu;
-    private JTextField textBilatu;
+    private JTextField textBilatuID;
     private JCheckBox cboxZuzendaria;
     
     private JComboBox cbDept = new JComboBox();
@@ -226,7 +231,7 @@ public class EnplegatuaKudeatu extends JFrame {
         		} else {
         			btnAdd.setEnabled(false);
         			btnDel.setEnabled(false);
-        			textBilatu.setEnabled(false);
+        			textBilatuID.setEnabled(false);
         			lblBilatu.setEnabled(false);
         			btnBaieztatu.setEnabled(true);
         			
@@ -346,13 +351,46 @@ public class EnplegatuaKudeatu extends JFrame {
         sp.putConstraint(SpringLayout.WEST, lblBilatu, 0, SpringLayout.WEST, lblIzena);
         contenedor.add(lblBilatu);
         
-        textBilatu = new JTextField();
-        sp.putConstraint(SpringLayout.NORTH, textBilatu, -3, SpringLayout.NORTH, lblBilatu);
-        sp.putConstraint(SpringLayout.WEST, textBilatu, 0, SpringLayout.WEST, txtIzena);
-        sp.putConstraint(SpringLayout.EAST, textBilatu, 28, SpringLayout.EAST, lblDept);
-        contenedor.add(textBilatu);
+        textBilatuID = new JTextField();
+        sp.putConstraint(SpringLayout.NORTH, textBilatuID, -3, SpringLayout.NORTH, lblBilatu);
+        sp.putConstraint(SpringLayout.WEST, textBilatuID, 0, SpringLayout.WEST, txtIzena);
+        sp.putConstraint(SpringLayout.EAST, textBilatuID, 28, SpringLayout.EAST, lblDept);
+        contenedor.add(textBilatuID);
         /**************** EOF BOTONES ^^^^^^^^^^^^^^^^^^^^ **/
  
+        TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(tabla.getModel());
+		 tabla.setRowSorter(rowSorter);
+		 
+		 textBilatuID.getDocument().addDocumentListener(new DocumentListener(){
+
+	            @Override
+	            public void insertUpdate(DocumentEvent e) {
+	                String text = textBilatuID.getText();
+
+	                if (text.trim().length() == 0) {
+	                    rowSorter.setRowFilter(null);
+	                } else {
+	                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+	                }
+	            }
+
+	            @Override
+	            public void removeUpdate(DocumentEvent e) {
+	                String text = textBilatuID.getText();
+
+	                if (text.trim().length() == 0) {
+	                    rowSorter.setRowFilter(null);
+	                } else {
+	                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+	                }
+	            }
+
+	            @Override
+	            public void changedUpdate(DocumentEvent e) {
+	                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	            }
+		 });
+        
         //Se hace visible la ventana
         setVisible(true);
     }
