@@ -180,6 +180,8 @@ public class DepartamentuaKudeatu extends JFrame {
 					
 					int lerroAukeratu = tabla.convertRowIndexToModel(tabla.getSelectedRow());
 					
+					System.out.println(lerroAukeratu);
+					
 					txtIzena.setText((String) dtm.getValueAt(lerroAukeratu, 1));
 					txtKokapena.setText((String) dtm.getValueAt(lerroAukeratu, 2));
 					
@@ -222,16 +224,18 @@ public class DepartamentuaKudeatu extends JFrame {
         		} else {
         			String idDeptString;
     				int idDept;
+    				
+					int lerroAukeratu = tabla.convertRowIndexToModel(tabla.getSelectedRow());
 
-        			dtm.setValueAt(txtIzena.getText(), aukeratutakoLerroa, 1);
-        			dtm.setValueAt(txtKokapena.getText(), aukeratutakoLerroa, 2);
+        			dtm.setValueAt(txtIzena.getText(), lerroAukeratu, 1);
+        			dtm.setValueAt(txtKokapena.getText(), lerroAukeratu, 2);
         			
     				btnBaieztatu.setEnabled(false);
     				btnAdd.setEnabled(true);
     				btnDel.setEnabled(true);
     				textBilatuID.setEnabled(true);
     				
-    				idDeptString = (String)dtm.getValueAt(tabla.getSelectedRow(), 0);
+    				idDeptString = (String)dtm.getValueAt(lerroAukeratu, 0);
     				idDept = Integer.parseInt(idDeptString);
     				
     				Update.DepartamentuaAldatu(idDept, txtIzena.getText(), txtKokapena.getText());
@@ -311,19 +315,7 @@ public class DepartamentuaKudeatu extends JFrame {
 		setVisible(true);
 	}
 
-    /*public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable(){
-            public void run() {
-               JFrame frame = new JFrame("Row Filter");
-               frame.getContentPane().add(new DepartamentuaKudeatu());
-               frame.pack();
-               frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-               frame.setLocationRelativeTo(null);
-               frame.setVisible(true);
-            }
-
-        });
-    }*/
+    
 	
 
 }
