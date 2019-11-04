@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import eredua.Delete;
 import eredua.Kontsultak;
 import eredua.Update;
 import kontroladorea.Departamentua;
@@ -76,10 +77,12 @@ public class EnplegatuaKudeatu extends JFrame {
     private JComboBox cbDept = new JComboBox();
     JComboBox cbArdura = new JComboBox();
     
-    static String zuzendaria = "false";
+    private String zuzendaria = "false";
     
     private String[] ardurak;
     private String[] departamentuak;
+    private int lerroAukeratu;
+    private Boolean zuzendariBalorea;
  
     /**************** MÉTODOS ***************************/
     //CONSTRUCTOR
@@ -135,7 +138,7 @@ public class EnplegatuaKudeatu extends JFrame {
         sp.putConstraint(SpringLayout.NORTH, scroll, 176,
                         SpringLayout.NORTH, contenedor);
         cabecera    = new String[] {"ID","IZENA","SOLDATA","ALTA DATA","ALTA ORDUA","ZUZENDARIA","DEPT.","ARDURA"};
-        dtm         = new DefaultTableModel(Metodoak.enplegatuakIkusi(),cabecera);
+        dtm         = new DefaultTableModel(Metodoak.enplegatuakIkusi(), cabecera);
         tabla       = new JTable(dtm) {
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -211,6 +214,19 @@ public class EnplegatuaKudeatu extends JFrame {
                         SpringLayout.WEST, contenedor);
         //BOTÓN BORRAR
         btnDel          = new JButton("Ezabatu");
+        btnDel.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+
+				if(tabla.getSelectedRow() == -1) {
+					JOptionPane.showMessageDialog(null, "Aukeratu lerro bat, mesedez.");
+				} else {
+					lerroAukeratu = tabla.convertRowIndexToModel(tabla.getSelectedRow());
+					Delete.EnplegatuaEzabatu(Integer.parseInt(dtm.getValueAt(lerroAukeratu, 0).toString()));
+					((DefaultTableModel)tabla.getModel()).removeRow(lerroAukeratu);
+					
+				}
+        	}
+        });
         contenedor.add(btnDel);
         sp.putConstraint(SpringLayout.SOUTH, btnDel, -10,
                         SpringLayout.SOUTH, contenedor);
@@ -231,14 +247,17 @@ public class EnplegatuaKudeatu extends JFrame {
         		} else {
         			btnAdd.setEnabled(false);
         			btnDel.setEnabled(false);
-        			textBilatuID.setEnabled(false);
         			lblBilatu.setEnabled(false);
         			btnBaieztatu.setEnabled(true);
         			
-        			txtIzena.setText((String) dtm.getValueAt(tabla.getSelectedRow(), 1));
-        			txtSoldata.setText((String) dtm.getValueAt(tabla.getSelectedRow(), 2));
+					lerroAukeratu = tabla.convertRowIndexToModel(tabla.getSelectedRow());
+					
+					System.out.println(lerroAukeratu);
         			
-        			zuzendariString = (String) dtm.getValueAt(tabla.getSelectedRow(), 5);
+        			txtIzena.setText((String) dtm.getValueAt(lerroAukeratu, 1));
+        			txtSoldata.setText((String) dtm.getValueAt(lerroAukeratu, 2));
+        			
+        			zuzendariString = (String) dtm.getValueAt(lerroAukeratu, 5);
         			if(zuzendariString.equalsIgnoreCase("true"))
         				zuzendariBoolean = true;
         			else
@@ -249,10 +268,10 @@ public class EnplegatuaKudeatu extends JFrame {
         			else 
         				cboxZuzendaria.setSelected(false);
         			
-        			departamentuIzena = Kontsultak.DepartamentuIzenaLortu(Integer.parseInt(dtm.getValueAt(tabla.getSelectedRow(), 6).toString()));
+        			departamentuIzena = Kontsultak.DepartamentuIzenaLortu(Integer.parseInt(dtm.getValueAt(lerroAukeratu, 6).toString()));
         			cbDept.setSelectedItem(departamentuIzena);
         			
-        			arduraIzena = Kontsultak.ArduraIzenaLortu(Integer.parseInt(dtm.getValueAt(tabla.getSelectedRow(), 7).toString()));
+        			arduraIzena = Kontsultak.ArduraIzenaLortu(Integer.parseInt(dtm.getValueAt(lerroAukeratu, 7).toString()));
         			cbArdura.setSelectedItem(arduraIzena);
         		}
         		
@@ -278,23 +297,29 @@ public class EnplegatuaKudeatu extends JFrame {
         contenedor.add(btnIrten);
         
         btnBaieztatu = new JButton("Baieztatu");
+        sp.putConstraint(SpringLayout.WEST, btnBaieztatu, 13, SpringLayout.EAST, cbDept);
+        sp.putConstraint(SpringLayout.EAST, btnBaieztatu, 0, SpringLayout.EAST, scroll);
         btnBaieztatu.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		if(txtIzena.getText().equals("") || txtSoldata.getText().equals("")) {
         			JOptionPane.showMessageDialog(null, "Ez utzi informazioa utzik, mesedez.");
         		}else {
-        			dtm.setValueAt(txtIzena.getText(), tabla.getSelectedRow(), 1);
-        			dtm.setValueAt(txtSoldata.getText(), tabla.getSelectedRow(), 2);
         			
-        			if(cboxZuzendaria.isSelected()) 
-        				dtm.setValueAt("true", tabla.getSelectedRow(), 5);
-        			else
-        				dtm.setValueAt("false", tabla.getSelectedRow(), 5);
+        			dtm.setValueAt(txtIzena.getText(), lerroAukeratu, 1);
+        			dtm.setValueAt(txtSoldata.getText(), lerroAukeratu, 2);
         			
-        			dtm.setValueAt(Kontsultak.DepartamentuIdLortu(cbDept.getSelectedItem().toString()), tabla.getSelectedRow(), 6);
-        			dtm.setValueAt(Kontsultak.ArduraIdLortu(cbArdura.getSelectedItem().toString()), tabla.getSelectedRow(), 7);
+        			if(cboxZuzendaria.isSelected()) {
+        				dtm.setValueAt("Bai", lerroAukeratu, 5);
+        				zuzendariBalorea = true;
+        			} else {
+        				dtm.setValueAt("Ez", lerroAukeratu, 5);
+        				zuzendariBalorea = false;
+        			}
         			
-        			Update.EnplegatuaAldatu(Integer.parseInt(dtm.getValueAt(tabla.getSelectedRow(), 0).toString()), txtIzena.getText(), txtSoldata.getText(), dtm.getValueAt(tabla.getSelectedRow(), 5).toString(), Integer.parseInt(dtm.getValueAt(tabla.getSelectedRow(), 6).toString()), Integer.parseInt(dtm.getValueAt(tabla.getSelectedRow(), 7).toString()));
+        			dtm.setValueAt(Kontsultak.DepartamentuIdLortu(cbDept.getSelectedItem().toString()), lerroAukeratu, 6);
+        			dtm.setValueAt(Kontsultak.ArduraIdLortu(cbArdura.getSelectedItem().toString()), lerroAukeratu, 7);
+        			
+        			Update.EnplegatuaAldatu(Integer.parseInt(dtm.getValueAt(lerroAukeratu, 0).toString()), txtIzena.getText(), txtSoldata.getText(), zuzendariBalorea.toString(), Integer.parseInt(dtm.getValueAt(tabla.getSelectedRow(), 6).toString()), Integer.parseInt(dtm.getValueAt(lerroAukeratu, 7).toString()));
         			
         			txtIzena.setText("");
     				txtSoldata.setText("");
@@ -305,9 +330,7 @@ public class EnplegatuaKudeatu extends JFrame {
         	}
         });
         sp.putConstraint(SpringLayout.NORTH, btnBaieztatu, 58, SpringLayout.NORTH, contenedor);
-        sp.putConstraint(SpringLayout.WEST, btnBaieztatu, 0, SpringLayout.WEST, btnIrten);
         sp.putConstraint(SpringLayout.SOUTH, btnBaieztatu, -73, SpringLayout.NORTH, scroll);
-        sp.putConstraint(SpringLayout.EAST, btnBaieztatu, -27, SpringLayout.EAST, contenedor);
         btnBaieztatu.setEnabled(false);
         contenedor.add(btnBaieztatu);
         
