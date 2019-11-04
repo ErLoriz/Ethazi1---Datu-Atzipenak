@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import eredua.Delete;
 import eredua.Update;
 import kontroladorea.Departamentua;
 import kontroladorea.Enplegatua;
@@ -156,9 +157,11 @@ public class DepartamentuaKudeatu extends JFrame {
 					JOptionPane.showMessageDialog(null, "Aukeratu lerro bat, mesedez.");
 				} else {
 					int lerroAukeratu = tabla.convertRowIndexToModel(tabla.getSelectedRow());
+					Delete.DepartamentuaEzabatu(Integer.parseInt(dtm.getValueAt(lerroAukeratu, 0).toString()));
 					((DefaultTableModel)tabla.getModel()).removeRow(lerroAukeratu);
 					
 				}
+				
 				
 			}
 		});

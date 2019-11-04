@@ -19,8 +19,8 @@ public class Delete {
 			conexion = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/elorrieta", "root", "");
 			s = (Statement) conexion.createStatement();
 			
-			PreparedStatement st = conexion.prepareStatement("DELETE FROM departamentua WHERE idDepartamentua = '"+idDept);
-			st.setInt(1,idDept);
+			PreparedStatement st = conexion.prepareStatement("DELETE FROM departamentua WHERE idDepartamentua = '"+idDept+"'");
+			//st.setInt(0,90);
 			st.executeUpdate();
 			
 			
@@ -42,7 +42,7 @@ public class Delete {
 			s = (Statement) conexion.createStatement();
 			
 			PreparedStatement st = conexion.prepareStatement("DELETE FROM enplegatua WHERE idEnplegatua = '"+idEnplegatu);
-			st.setInt(1,idEnplegatu);
+			//st.setInt(1,idEnplegatu);
 			st.executeUpdate();
 			
 			
