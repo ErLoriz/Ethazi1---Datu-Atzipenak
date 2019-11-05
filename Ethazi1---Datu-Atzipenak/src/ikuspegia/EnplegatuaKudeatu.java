@@ -413,8 +413,7 @@ public class EnplegatuaKudeatu extends JFrame {
 	                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	            }
 		 });
-        
-        //Se hace visible la ventana
+		 
         setVisible(true);
     }
 	
