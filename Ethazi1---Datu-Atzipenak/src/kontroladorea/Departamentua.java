@@ -1,5 +1,7 @@
 package kontroladorea;
 
+import java.util.ArrayList;
+
 public class Departamentua {
 
 	public Departamentua() {
@@ -9,6 +11,7 @@ public class Departamentua {
 	private int idDepartamentua;
 	private String izena;	
 	private String kokapena;
+	private ArrayList departamentuak;
 	
 	public Departamentua(int idDepartamentua, String izena, String kokapena) {
 		super();
@@ -17,6 +20,11 @@ public class Departamentua {
 		this.kokapena = kokapena;
 	}
 
+	public Departamentua(ArrayList departamentuak) {
+		super();
+		this.departamentuak = departamentuak;
+	}
+	
 	public int getIdDepartamentua() {
 		return idDepartamentua;
 	}

@@ -68,7 +68,8 @@ public class DepartamentuaKudeatu extends JFrame {
 	private JTextField textBilatuID;
 	private JLabel lblBilatuID;
 
-	private int aukeratutakoLerroa;
+	private int lerroAukeratu;
+	
 
 	/**************** MÉTODOS ***************************/
 	
@@ -135,10 +136,10 @@ public class DepartamentuaKudeatu extends JFrame {
         		if(txtIzena.getText().equals("") || txtKokapena.getText().equals("")) {
         			JOptionPane.showMessageDialog(null, "Sartu informazio guztia, mesedez.");
         		} else {
-        			int id = dtm.getRowCount() + 101;
+        			int id = Integer.parseInt(dtm.getValueAt(dtm.getRowCount() - 1, 0).toString());
 	        		String izena = txtIzena.getText();
 	        		String kokapena = txtKokapena.getText();
-	        		Metodoak.sartuDepartamentua(id, izena, kokapena);
+	        		Metodoak.sartuDepartamentua(id + 1, izena, kokapena);
 	        		dtm.addRow(new Object[] {id + 1, izena, kokapena});
         		}
         		
@@ -157,7 +158,7 @@ public class DepartamentuaKudeatu extends JFrame {
 				if(tabla.getSelectedRow() == -1) {
 					JOptionPane.showMessageDialog(null, "Aukeratu lerro bat, mesedez.");
 				} else {
-					int lerroAukeratu = tabla.convertRowIndexToModel(tabla.getSelectedRow());
+					lerroAukeratu = tabla.convertRowIndexToModel(tabla.getSelectedRow());
 					Metodoak.ezabatuDepartamentua(Integer.parseInt(dtm.getValueAt(lerroAukeratu, 0).toString()));
 					((DefaultTableModel)tabla.getModel()).removeRow(lerroAukeratu);
 					
@@ -182,7 +183,7 @@ public class DepartamentuaKudeatu extends JFrame {
 					btnDel.setEnabled(false);
 					textBilatuID.setEnabled(false);
 					
-					int lerroAukeratu = tabla.convertRowIndexToModel(tabla.getSelectedRow());
+					lerroAukeratu = tabla.convertRowIndexToModel(tabla.getSelectedRow());
 					
 					System.out.println(lerroAukeratu);
 					
@@ -196,8 +197,6 @@ public class DepartamentuaKudeatu extends JFrame {
 					
 					txtIzena.setText((String) dtm.getValueAt(lerroAukeratu, 1));
 					txtKokapena.setText((String) dtm.getValueAt(lerroAukeratu, 2));
-					
-					aukeratutakoLerroa = tabla.getSelectedRow();
 				}
 				
 			}
@@ -228,8 +227,6 @@ public class DepartamentuaKudeatu extends JFrame {
         		} else {
         			String idDeptString;
     				int idDept;
-    				
-					int lerroAukeratu = tabla.convertRowIndexToModel(tabla.getSelectedRow());
 
         			dtm.setValueAt(txtIzena.getText(), lerroAukeratu, 1);
         			dtm.setValueAt(txtKokapena.getText(), lerroAukeratu, 2);
@@ -240,8 +237,9 @@ public class DepartamentuaKudeatu extends JFrame {
     				textBilatuID.setEnabled(true);
     				
     				idDeptString = (String)dtm.getValueAt(lerroAukeratu, 0);
+    				System.out.println(idDeptString);
     				idDept = Integer.parseInt(idDeptString);
-    				
+    				System.out.println(idDept);
     				Metodoak.aldatuDepartamentua(idDept, txtIzena.getText(), txtKokapena.getText());
     				
     				txtIzena.setText("");

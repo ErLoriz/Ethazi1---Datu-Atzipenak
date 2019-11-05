@@ -77,7 +77,7 @@ public class EnplegatuaKudeatu extends JFrame {
     private JComboBox cbDept = new JComboBox();
     JComboBox cbArdura = new JComboBox();
     
-    private String zuzendaria = "false";
+    private String zuzendaria = "Ez";
     
     private String[] ardurak;
     private String[] departamentuak;
@@ -100,17 +100,22 @@ public class EnplegatuaKudeatu extends JFrame {
  
         //INDICAR QUE SE QUIERE USAR SPRINGLAYOUT
         SpringLayout sp = new SpringLayout();
+        sp.putConstraint(SpringLayout.WEST, cbDept, 0, SpringLayout.WEST, cbArdura);
+        sp.putConstraint(SpringLayout.EAST, cbDept, -148, SpringLayout.EAST, contenedor);
+        sp.putConstraint(SpringLayout.EAST, cbArdura, -148, SpringLayout.EAST, contenedor);
         contenedor.setLayout(sp);
  
         //Vamos al lío
         /**************** BOF ETIQUETAS  vvvvvvvvvvvvvvvv **/
         //ETIQUETA NOMBRE
         lblIzena = new JLabel("Izena:");  //Crear el objeto
+        sp.putConstraint(SpringLayout.NORTH, cbDept, -3, SpringLayout.NORTH, lblIzena);
         sp.putConstraint(SpringLayout.NORTH, lblIzena, 53, SpringLayout.NORTH, contenedor);
         contenedor.add(lblIzena);
        
         //ETIQUETA NIF
         lblKokapena = new JLabel("Soldata:");
+        sp.putConstraint(SpringLayout.NORTH, cbArdura, -3, SpringLayout.NORTH, lblKokapena);
         sp.putConstraint(SpringLayout.WEST, lblKokapena, 10, SpringLayout.WEST, contenedor);
         sp.putConstraint(SpringLayout.WEST, lblIzena, 0, SpringLayout.WEST, lblKokapena);
         contenedor.add(lblKokapena);
@@ -120,14 +125,14 @@ public class EnplegatuaKudeatu extends JFrame {
         //CUADRO DE TEXTO PARA EL NOMBRE
         txtIzena = new JTextField();
         sp.putConstraint(SpringLayout.NORTH, txtIzena, -3, SpringLayout.NORTH, lblIzena);
-        sp.putConstraint(SpringLayout.WEST, txtIzena, 59, SpringLayout.EAST, lblIzena);
-        sp.putConstraint(SpringLayout.EAST, txtIzena, -380, SpringLayout.EAST, contenedor);
+        sp.putConstraint(SpringLayout.WEST, txtIzena, 32, SpringLayout.EAST, lblIzena);
+        sp.putConstraint(SpringLayout.EAST, txtIzena, -407, SpringLayout.EAST, contenedor);
         contenedor.add(txtIzena);
         //CUADRO DE TEXTO PARA EL NIF
         txtSoldata = new JTextField();
-        sp.putConstraint(SpringLayout.WEST, txtSoldata, 50, SpringLayout.EAST, lblKokapena);
-        sp.putConstraint(SpringLayout.EAST, txtSoldata, -380, SpringLayout.EAST, contenedor);
         sp.putConstraint(SpringLayout.NORTH, txtSoldata, -3, SpringLayout.NORTH, lblKokapena);
+        sp.putConstraint(SpringLayout.WEST, txtSoldata, 0, SpringLayout.WEST, txtIzena);
+        sp.putConstraint(SpringLayout.EAST, txtSoldata, -407, SpringLayout.EAST, contenedor);
         contenedor.add(txtSoldata);
         /**************** EOF CUADROS DE  TEXTO ^^^^^^^^^ **/
  
@@ -146,13 +151,14 @@ public class EnplegatuaKudeatu extends JFrame {
 		};
 		
         JCheckBox cboxZuzendaria = new JCheckBox("Zuzendaria");
+        sp.putConstraint(SpringLayout.NORTH, cboxZuzendaria, 14, SpringLayout.SOUTH, txtSoldata);
         cboxZuzendaria.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		if(zuzendaria == "false") {
-        			zuzendaria = "true";
+        		if(zuzendaria == "Ez") {
+        			zuzendaria = "Bai";
         		} else {
-        			zuzendaria = "false";
+        			zuzendaria = "Ez";
         		}
         		
         		
@@ -190,20 +196,20 @@ public class EnplegatuaKudeatu extends JFrame {
         		}
         		
         		if(beteta == true) {
-        		SimpleDateFormat data = new SimpleDateFormat("yyyy/MM/dd");
-        		SimpleDateFormat ordua = new SimpleDateFormat("HH:mm");
-        		
-        		int id = dtm.getRowCount()+1;
-        		String izena = txtIzena.getText();
-        		String soldata = txtSoldata.getText();
-        		Date altaData = new Date();
-        		Date altaOrdua = new Date();
-        		idDept = Metodoak.departamentuIdLortu(cbDept.getSelectedItem().toString());
-        		idArdura = Metodoak.arduraIdLortu(cbArdura.getSelectedItem().toString());
-        		
-        		dtm.addRow(new Object[] {id, izena, soldata, data.format(altaData), ordua.format(altaOrdua), zuzendaria, idDept, idArdura});
-        		Metodoak.sartuEnplegatua(id, izena, Double.parseDouble(soldata), data.format(altaData), ordua.format(altaOrdua), zuzendaria, idDept, idArdura);
-        		}
+	        		SimpleDateFormat data = new SimpleDateFormat("yyyy/MM/dd");
+	        		SimpleDateFormat ordua = new SimpleDateFormat("HH:mm");
+	        		int id = Integer.parseInt(dtm.getValueAt(dtm.getRowCount() - 1, 0).toString());
+	        		System.out.println(id);
+	        		String izena = txtIzena.getText();
+	        		String soldata = txtSoldata.getText();
+	        		Date altaData = new Date();
+	        		Date altaOrdua = new Date();
+	        		idDept = Metodoak.departamentuIdLortu(cbDept.getSelectedItem().toString());
+	        		idArdura = Metodoak.arduraIdLortu(cbArdura.getSelectedItem().toString());
+	        		
+	        		dtm.addRow(new Object[] {id + 1, izena, soldata, data.format(altaData), ordua.format(altaOrdua), zuzendaria, idDept, idArdura});
+	        		Metodoak.sartuEnplegatua(id + 1, izena, Double.parseDouble(soldata), data.format(altaData), ordua.format(altaOrdua), zuzendaria, idDept, idArdura);
+	        	}
         	}
         });
         
@@ -297,8 +303,10 @@ public class EnplegatuaKudeatu extends JFrame {
         contenedor.add(btnIrten);
         
         btnBaieztatu = new JButton("Baieztatu");
-        sp.putConstraint(SpringLayout.WEST, btnBaieztatu, 13, SpringLayout.EAST, cbDept);
-        sp.putConstraint(SpringLayout.EAST, btnBaieztatu, 0, SpringLayout.EAST, scroll);
+        sp.putConstraint(SpringLayout.NORTH, btnBaieztatu, 59, SpringLayout.NORTH, contenedor);
+        sp.putConstraint(SpringLayout.WEST, btnBaieztatu, 18, SpringLayout.EAST, cbDept);
+        sp.putConstraint(SpringLayout.SOUTH, btnBaieztatu, -72, SpringLayout.NORTH, scroll);
+        sp.putConstraint(SpringLayout.EAST, btnBaieztatu, -15, SpringLayout.EAST, scroll);
         btnBaieztatu.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		if(txtIzena.getText().equals("") || txtSoldata.getText().equals("")) {
@@ -329,18 +337,10 @@ public class EnplegatuaKudeatu extends JFrame {
         		}
         	}
         });
-        sp.putConstraint(SpringLayout.NORTH, btnBaieztatu, 58, SpringLayout.NORTH, contenedor);
-        sp.putConstraint(SpringLayout.SOUTH, btnBaieztatu, -73, SpringLayout.NORTH, scroll);
         btnBaieztatu.setEnabled(false);
         contenedor.add(btnBaieztatu);
-        
-        sp.putConstraint(SpringLayout.NORTH, cboxZuzendaria, 14, SpringLayout.SOUTH, txtSoldata);
         sp.putConstraint(SpringLayout.WEST, cboxZuzendaria, 99, SpringLayout.WEST, contenedor);
         contenedor.add(cboxZuzendaria);
-        
-        
-        sp.putConstraint(SpringLayout.NORTH, cbDept, -3, SpringLayout.NORTH, lblIzena);
-        sp.putConstraint(SpringLayout.EAST, cbDept, -128, SpringLayout.EAST, contenedor);
         contenedor.add(cbDept);
         departamentuak = Metodoak.departamentuIzenakIkusi();
         for(int i=0;i<departamentuak.length;i++) {
@@ -349,19 +349,14 @@ public class EnplegatuaKudeatu extends JFrame {
         
         JLabel lblDept = new JLabel("Departamentua:");
         sp.putConstraint(SpringLayout.NORTH, lblDept, 0, SpringLayout.NORTH, lblIzena);
-        sp.putConstraint(SpringLayout.WEST, lblDept, 21, SpringLayout.EAST, txtIzena);
+        sp.putConstraint(SpringLayout.WEST, lblDept, 28, SpringLayout.EAST, txtIzena);
         contenedor.add(lblDept);
         
         JLabel lblArdura = new JLabel("Ardura:");
+        sp.putConstraint(SpringLayout.WEST, cbArdura, 18, SpringLayout.EAST, lblArdura);
         sp.putConstraint(SpringLayout.NORTH, lblArdura, 0, SpringLayout.NORTH, lblKokapena);
-        sp.putConstraint(SpringLayout.WEST, lblArdura, 0, SpringLayout.WEST, btnUpd);
+        sp.putConstraint(SpringLayout.EAST, lblArdura, 0, SpringLayout.EAST, lblDept);
         contenedor.add(lblArdura);
-        
-        
-        sp.putConstraint(SpringLayout.WEST, cbArdura, 15, SpringLayout.EAST, lblArdura);
-        sp.putConstraint(SpringLayout.EAST, cbArdura, -128, SpringLayout.EAST, contenedor);
-        sp.putConstraint(SpringLayout.WEST, cbDept, 0, SpringLayout.WEST, cbArdura);
-        sp.putConstraint(SpringLayout.NORTH, cbArdura, -3, SpringLayout.NORTH, lblKokapena);
         contenedor.add(cbArdura);
         ardurak = Metodoak.arduraIzenakIkusi();
         
@@ -370,15 +365,15 @@ public class EnplegatuaKudeatu extends JFrame {
         }
         
         
-        lblBilatu = new JLabel("Bilatu ID:");
+        lblBilatu = new JLabel("Bilatu:");
         sp.putConstraint(SpringLayout.NORTH, lblBilatu, 10, SpringLayout.NORTH, contenedor);
         sp.putConstraint(SpringLayout.WEST, lblBilatu, 0, SpringLayout.WEST, lblIzena);
         contenedor.add(lblBilatu);
         
         textBilatuID = new JTextField();
         sp.putConstraint(SpringLayout.NORTH, textBilatuID, -3, SpringLayout.NORTH, lblBilatu);
-        sp.putConstraint(SpringLayout.WEST, textBilatuID, 0, SpringLayout.WEST, txtIzena);
-        sp.putConstraint(SpringLayout.EAST, textBilatuID, 28, SpringLayout.EAST, lblDept);
+        sp.putConstraint(SpringLayout.WEST, textBilatuID, 6, SpringLayout.EAST, lblBilatu);
+        sp.putConstraint(SpringLayout.EAST, textBilatuID, -306, SpringLayout.EAST, contenedor);
         contenedor.add(textBilatuID);
         /**************** EOF BOTONES ^^^^^^^^^^^^^^^^^^^^ **/
  
