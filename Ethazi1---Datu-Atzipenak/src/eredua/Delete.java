@@ -36,15 +36,13 @@ public class Delete {
 		Statement s = null;
 		
 		try {
-			// Cargar el driver
+
 			Class.forName("com.mysql.jdbc.Driver");
 			conexion = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/elorrieta", "root", "");
 			s = (Statement) conexion.createStatement();
 			
 			PreparedStatement st = conexion.prepareStatement("DELETE FROM enplegatua WHERE idEnplegatua = '"+idEnplegatu+"'");
-			//st.setInt(1,idEnplegatu);
 			st.executeUpdate();
-			
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

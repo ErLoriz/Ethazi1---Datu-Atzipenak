@@ -364,6 +364,7 @@ public class EnplegatuaKudeatu extends JFrame {
         sp.putConstraint(SpringLayout.NORTH, cbArdura, -3, SpringLayout.NORTH, lblKokapena);
         contenedor.add(cbArdura);
         ardurak = Metodoak.arduraIzenakIkusi();
+        
         for(int i=0;i<ardurak.length;i++) {
         	cbArdura.addItem(ardurak[i]);
         }
