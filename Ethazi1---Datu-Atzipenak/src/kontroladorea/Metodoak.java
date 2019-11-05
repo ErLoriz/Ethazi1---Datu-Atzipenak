@@ -151,4 +151,12 @@ public class Metodoak {
 		Insertak.SartuDepartamentua(d1);
 	}
 	
+	public static void ezabatuDepartamentua(int idDept){
+		Delete.DepartamentuaEzabatu(idDept);
+	}
+	
+	public static void aldatuDepartamentua(int idDept, String izena, String kokapena){
+		Update.DepartamentuaAldatu(idDept, izena, kokapena);
+	}
+	
 }
