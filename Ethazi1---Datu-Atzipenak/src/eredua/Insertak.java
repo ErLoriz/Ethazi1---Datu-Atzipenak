@@ -16,8 +16,6 @@ public class Insertak {
 
 		Connection conexion = null;
 		Statement s = null;
-		String zuzendari = null;
-		zuzendari = e1.zuzendariaBooleanToString(e1.getZuzendari());
 
 		try {
 			// Cargar el driver
@@ -36,7 +34,7 @@ public class Insertak {
 			preparedStmt.setDouble(3, e1.getSoldata());
 			preparedStmt.setString(4, e1.getAltaData());
 			preparedStmt.setString(5, e1.getAltaOrdua());
-			preparedStmt.setString(6, zuzendari);
+			preparedStmt.setString(6, e1.getZuzendari());
 			preparedStmt.setInt(7, e1.getDepartamentua_idDepartamentua());
 			preparedStmt.setInt(8, e1.getArdura_idArdura());
 

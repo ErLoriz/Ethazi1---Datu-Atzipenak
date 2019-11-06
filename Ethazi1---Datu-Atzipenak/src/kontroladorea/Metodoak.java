@@ -36,12 +36,8 @@ public class Metodoak {
 	    	data[i][2] = Double.toString(e1.get(i).getSoldata());
 	    	data[i][3] = e1.get(i).getAltaData();
 	    	data[i][4] = e1.get(i).getAltaOrdua();
+	    	data[i][5] = e1.get(i).getZuzendari();
 	    	
-	    	if(e1.get(i).getZuzendari() == true) {
-	    		data[i][5] = "Bai";
-	    	} else {
-	    		data[i][5] = "Ez";
-	    	}
 	    	
 	    	for(int x = 0; x <= d1.size() - 1; x++) {
 	    		if(d1.get(x).getIdDepartamentua() == e1.get(i).getDepartamentua_idDepartamentua()) {
@@ -69,7 +65,7 @@ public class Metodoak {
 			data[i][2] = d1.get(i).getKokapena();
 
 		}
-
+		
 		return data;
 	}
 	
@@ -119,12 +115,6 @@ public class Metodoak {
 	}
 	
 	public static void sartuEnplegatua(int id, String izena, Double soldata, String altaData, String altaOrdua, String zuzendaria, int idDept, int idArdura) {
-		boolean zuzendariBoolean = false;
-		
-		if(zuzendaria.equalsIgnoreCase("false"))
-			zuzendariBoolean = false;
-		else if(zuzendaria.equalsIgnoreCase("true"))
-			zuzendariBoolean = true;
 		
 		Enplegatua e1 = new Enplegatua();
 		
@@ -133,7 +123,7 @@ public class Metodoak {
 		e1.setSoldata(soldata);
 		e1.setAltaData(altaData);
 		e1.setAltaOrdua(altaOrdua);
-		e1.setZuzendari(zuzendariBoolean);
+		e1.setZuzendari(zuzendaria);
 		e1.setDepartamentua_idDepartamentua(idDept);
 		e1.setArdura_idArdura(idArdura);
 		

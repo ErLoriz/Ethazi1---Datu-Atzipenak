@@ -46,8 +46,7 @@ public class Kontsultak {
 				Departamentua_idDepartamentua = rs.getInt("Departamentua_idDepartamentua");
 				Ardura_idArdura = rs.getInt("Ardura_idArdura");
 				zuzendari = rs.getString("zuzendari");
-				zuzendariBoolean = e.zuzendariaStringToBoolean(zuzendari);
-				Enplegatua e1 = new Enplegatua (idEnplegatua, izena, soldata, altaData,	altaOrdua,	Departamentua_idDepartamentua, Ardura_idArdura, zuzendariBoolean);
+				Enplegatua e1 = new Enplegatua (idEnplegatua, izena, soldata, altaData,	altaOrdua,	Departamentua_idDepartamentua, Ardura_idArdura, zuzendari);
 				Enplegatua e2 = new Enplegatua (Enplegatuak);
 				Enplegatuak.add(e1);
 
@@ -148,9 +147,8 @@ public class Kontsultak {
 	      soldataDouble = Double.parseDouble(soldata);
 	      Dept_Int = Integer.parseInt(Departamentua_idDepartamentua);
 	      Ard_Int = Integer.parseInt(Ardura_idArdura);
-	      zuzendariBoolean = e.zuzendariaStringToBoolean(zuzendari);
 	     
-	Enplegatua e1 = new Enplegatua(idEnplegatuaInt, izena, soldataDouble, altaData, altaOrdua, Dept_Int, Ard_Int, zuzendariBoolean);
+	Enplegatua e1 = new Enplegatua(idEnplegatuaInt, izena, soldataDouble, altaData, altaOrdua, Dept_Int, Ard_Int, zuzendari);
 	enplegatuak.add(e1);
 
 	 eredua.Insertak.sartuErabiltzailea(e1);

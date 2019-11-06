@@ -22,11 +22,11 @@ public class Enplegatua {
 	private String altaOrdua;
 	private int Departamentua_idDepartamentua;
 	private int Ardura_idArdura;
-	private boolean zuzendari;
+	private String zuzendari;
 	private ArrayList enplegatuak;
 	
 		public Enplegatua(int idEnplegatua, String izena, double soldata, String altaData, String altaOrdua,
-			int departamentua_idDepartamentua, int ardura_idArdura, boolean zuzendari) {
+			int departamentua_idDepartamentua, int ardura_idArdura, String zuzendari) {
 		super();
 		this.idEnplegatua = idEnplegatua;
 		this.izena = izena;
@@ -113,11 +113,11 @@ public class Enplegatua {
 				+ Departamentua_idDepartamentua + "\nArdura_idArdura: " + Ardura_idArdura;
 	}
 
-	public boolean getZuzendari() {
+	public String getZuzendari() {
 		return zuzendari;
 	}
 
-	public void setZuzendari(boolean zuzendari) {
+	public void setZuzendari(String zuzendari) {
 		this.zuzendari = zuzendari;
 	}
 

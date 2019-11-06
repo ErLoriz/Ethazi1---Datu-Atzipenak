@@ -69,6 +69,7 @@ public class DepartamentuaKudeatu extends JFrame {
 	private JLabel lblBilatuID;
 
 	private int lerroAukeratu;
+	private JButton btnEzeztatu;
 	
 
 	/**************** MÉTODOS ***************************/
@@ -192,6 +193,7 @@ public class DepartamentuaKudeatu extends JFrame {
 					
 					
 					btnBaieztatu.setEnabled(true);
+					btnEzeztatu.setEnabled(true);
 					btnAdd.setEnabled(false);
 					btnDel.setEnabled(false);
 					
@@ -219,6 +221,9 @@ public class DepartamentuaKudeatu extends JFrame {
 		contenedor.add(btnIrten);
 
 		btnBaieztatu = new JButton("Baieztatu");
+		sp.putConstraint(SpringLayout.NORTH, btnBaieztatu, 23, SpringLayout.NORTH, contenedor);
+		sp.putConstraint(SpringLayout.WEST, btnBaieztatu, 129, SpringLayout.EAST, txtIzena);
+		sp.putConstraint(SpringLayout.EAST, btnBaieztatu, -106, SpringLayout.EAST, contenedor);
 		btnBaieztatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -232,6 +237,7 @@ public class DepartamentuaKudeatu extends JFrame {
         			dtm.setValueAt(txtKokapena.getText(), lerroAukeratu, 2);
         			
     				btnBaieztatu.setEnabled(false);
+    				btnEzeztatu.setEnabled(false);
     				btnAdd.setEnabled(true);
     				btnDel.setEnabled(true);
     				textBilatuID.setEnabled(true);
@@ -248,14 +254,10 @@ public class DepartamentuaKudeatu extends JFrame {
 				
 			}
 		});
-		sp.putConstraint(SpringLayout.NORTH, btnBaieztatu, 82, SpringLayout.NORTH, contenedor);
-		sp.putConstraint(SpringLayout.WEST, btnBaieztatu, 83, SpringLayout.EAST, txtIzena);
-		sp.putConstraint(SpringLayout.EAST, btnBaieztatu, -152, SpringLayout.EAST, contenedor);
 		btnBaieztatu.setEnabled(false);
 		contenedor.add(btnBaieztatu);
 		
 		lblKokapena = new JLabel("Kokapena:");
-		sp.putConstraint(SpringLayout.SOUTH, btnBaieztatu, 0, SpringLayout.SOUTH, lblKokapena);
 		sp.putConstraint(SpringLayout.SOUTH, lblKokapena, -26, SpringLayout.NORTH, scroll);
 		sp.putConstraint(SpringLayout.EAST, lblIzena, 0, SpringLayout.EAST, lblKokapena);
 		sp.putConstraint(SpringLayout.WEST, lblKokapena, 10, SpringLayout.WEST, contenedor);
@@ -280,6 +282,28 @@ public class DepartamentuaKudeatu extends JFrame {
 		/**************** EOF BOTONES ^^^^^^^^^^^^^^^^^^^^ **/
 		TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(tabla.getModel());
 		 tabla.setRowSorter(rowSorter);
+		 
+		 btnEzeztatu = new JButton("Ezeztatu");
+		 btnEzeztatu.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent arg0) {
+		 		
+		 		txtIzena.setText("");
+				txtKokapena.setText("");
+				
+				btnAdd.setEnabled(true);
+				btnDel.setEnabled(true);
+				btnBaieztatu.setEnabled(false);
+				btnEzeztatu.setEnabled(false);
+		 		
+		 	}
+		 });
+		 sp.putConstraint(SpringLayout.SOUTH, btnBaieztatu, -19, SpringLayout.NORTH, btnEzeztatu);
+		 sp.putConstraint(SpringLayout.WEST, btnEzeztatu, 129, SpringLayout.EAST, txtKokapena);
+		 sp.putConstraint(SpringLayout.SOUTH, btnEzeztatu, 8, SpringLayout.SOUTH, lblKokapena);
+		 sp.putConstraint(SpringLayout.EAST, btnEzeztatu, -106, SpringLayout.EAST, contenedor);
+		 sp.putConstraint(SpringLayout.NORTH, btnEzeztatu, -40, SpringLayout.SOUTH, lblKokapena);
+		 btnEzeztatu.setEnabled(false);
+		 contenedor.add(btnEzeztatu);
 		 
 		 textBilatuID.getDocument().addDocumentListener(new DocumentListener(){
 

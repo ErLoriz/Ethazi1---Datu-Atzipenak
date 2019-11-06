@@ -35,6 +35,14 @@ public class Ardura {
 	public void setIzenArdura(String izenArdura) {
 		this.izenArdura = izenArdura;
 	}
+
+	public ArrayList getArdurak() {
+		return ardurak;
+	}
+
+	public void setArdurak(ArrayList ardurak) {
+		this.ardurak = ardurak;
+	}
 	
 		
 	

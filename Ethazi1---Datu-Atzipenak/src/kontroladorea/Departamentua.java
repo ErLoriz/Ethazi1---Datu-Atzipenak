@@ -54,6 +54,14 @@ public class Departamentua {
 		return "idDepartamentua: " + idDepartamentua + "\nizena: " + izena + "\nkokapena: " + kokapena
 				+ "\n************************************\n";
 	}
+
+	public ArrayList getDepartamentuak() {
+		return departamentuak;
+	}
+
+	public void setDepartamentuak(ArrayList departamentuak) {
+		this.departamentuak = departamentuak;
+	}
 	
 	
 	
