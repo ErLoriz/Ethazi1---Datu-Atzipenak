@@ -42,7 +42,7 @@ public class Menua extends JFrame {
 		});
 		
 		
-		btnDepartamentuakKudeatu.setBounds(156, 95, 282, 49);
+		btnDepartamentuakKudeatu.setBounds(156, 52, 282, 49);
 		contentPane.add(btnDepartamentuakKudeatu);
 		btnEnplegatuakKudeatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -52,8 +52,15 @@ public class Menua extends JFrame {
 		});
 		
 		
-		btnEnplegatuakKudeatu.setBounds(156, 239, 282, 49);
+		btnEnplegatuakKudeatu.setBounds(156, 147, 282, 49);
 		contentPane.add(btnEnplegatuakKudeatu);
+		
+		JButton btnDepartamentuakIkusi = new JButton("Departamentuak ikusi\r\n");
+		btnDepartamentuakIkusi.setBounds(156, 239, 282, 49);
+		contentPane.add(btnDepartamentuakIkusi);
+		
+		JButton btnEnplegatuakIkusi = new JButton("Enplegatuak Ikusi");
+		btnEnplegatuakIkusi.setBounds(156, 325, 282, 49);
+		contentPane.add(btnEnplegatuakIkusi);
 	}
-
 }

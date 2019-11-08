@@ -1,6 +1,7 @@
 package ikuspegia;
 
 import java.awt.BorderLayout;
+import logger.*;
 import java.awt.EventQueue;
 
 import javax.swing.JButton;
@@ -190,6 +191,7 @@ public class EnplegatuaKudeatu extends JFrame {
         		if(txtIzena.getText().equals("")) {
         			beteta = false;
         			JOptionPane.showMessageDialog(null,"Izena jarri", "Txarto", JOptionPane.INFORMATION_MESSAGE);
+        			LoggerKudeatu.idatziLog("Izena falta da");
         		}
         		else if(txtSoldata.getText().equals("")) {
         			beteta = false;
