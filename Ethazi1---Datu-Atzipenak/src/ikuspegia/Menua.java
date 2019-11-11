@@ -56,10 +56,24 @@ public class Menua extends JFrame {
 		contentPane.add(btnEnplegatuakKudeatu);
 		
 		JButton btnDepartamentuakIkusi = new JButton("Departamentuak ikusi\r\n");
+		btnDepartamentuakIkusi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				eredua.DepartamentuaXML.departamentuaSartu();
+				
+			}
+		});
 		btnDepartamentuakIkusi.setBounds(156, 239, 282, 49);
 		contentPane.add(btnDepartamentuakIkusi);
 		
 		JButton btnEnplegatuakIkusi = new JButton("Enplegatuak Ikusi");
+		btnEnplegatuakIkusi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				eredua.EnplegatuaXML.enplegatuaSartu();
+				
+			}
+		});
 		btnEnplegatuakIkusi.setBounds(156, 325, 282, 49);
 		contentPane.add(btnEnplegatuakIkusi);
 	}
