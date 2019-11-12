@@ -8,7 +8,7 @@ public class Nagusia {
 	public static void main(String[] args) {
 
 		
-		Konexioa konexioa = new Konexioa("elorrieta");
+		Konexioa konexioa = new Konexioa();
 		//System.out.println(eredua.Kontsultak.DepartamentuakIkusi().toString().replaceAll("[\\[\\]]", "").replaceAll(",", " "));
 		//System.out.println(eredua.Kontsultak.EnplegatuakIkusi().toString());
 		ikuspegia.Hasiera ejecutar = new ikuspegia.Hasiera();

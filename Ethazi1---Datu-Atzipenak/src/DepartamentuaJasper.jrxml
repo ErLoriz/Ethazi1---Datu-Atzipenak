@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="650dc981-7043-46e6-bff5-3cbc80709cb4">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (2)"/>
+	<queryString language="SQL">
+		<![CDATA[select * from  elorrieta.departamentua ]]>
+	</queryString>
+	<field name="idDepartamentua" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="idDepartamentua"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="departamentua"/>
+	</field>
+	<field name="izena" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="izena"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="departamentua"/>
+	</field>
+	<field name="kokapena" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="kokapena"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="departamentua"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="0" width="395" height="70" uuid="ca27ab6e-25eb-4f2a-94f5-18471097120a"/>
+				<textElement>
+					<font size="52"/>
+				</textElement>
+				<text><![CDATA[Departamentuak]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="0" width="100" height="30" uuid="8727210e-874f-473e-98c1-612ee0398b3c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Departamentua]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="232" y="0" width="90" height="30" uuid="92ada453-1792-4ff4-a296-04ab61dd36bf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Izena]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="0" width="90" height="30" uuid="2dba4c41-7014-47aa-8dbf-2b6f6fdbbb24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kokapena]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="80" y="0" width="100" height="30" uuid="4c75ee84-c4af-45c7-838c-72ffafa4d08c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{idDepartamentua}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="232" y="0" width="90" height="30" uuid="259573ee-bac3-4aff-9802-f2666a30aff1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{izena}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="90" height="30" uuid="87aae0c5-560b-497b-aadb-c4b11430ac5c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{kokapena}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

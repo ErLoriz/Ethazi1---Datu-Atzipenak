@@ -20,8 +20,10 @@ private String makina="localhost/";
      * @param baseDatos
      * @return 
      */
-    public Konexioa(String baseDatos){
+    public Konexioa(){
        
+    String baseDatos = "elorrieta";
+    	
     String server="jdbc:mysql://";
    
     this.zerbitzaria="jdbc:mysql://"+this.makina+baseDatos+":"+ this.portua+"/"+baseDatos;

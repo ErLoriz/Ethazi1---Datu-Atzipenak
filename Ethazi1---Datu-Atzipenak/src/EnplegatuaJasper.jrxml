@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="650dc981-7043-46e6-bff5-3cbc80709cb4">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (2)"/>
+	<queryString language="SQL">
+		<![CDATA[select e.idEnplegatua, e.izena, e.soldata,e.altaData, e.altaOrdua, e.zuzendari, d.izena, a.izenArdura from departamentua d, enplegatua e, ardura a where d.idDepartamentua = e.Departamentua_idDepartamentua and a.idArdura = e.Ardura_idArdura]]>
+	</queryString>
+	<field name="idEnplegatua" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="idEnplegatua"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="enplegatua"/>
+	</field>
+	<field name="izena" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="izena"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="enplegatua"/>
+	</field>
+	<field name="soldata" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="soldata"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="enplegatua"/>
+	</field>
+	<field name="altaData" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="altaData"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="enplegatua"/>
+	</field>
+	<field name="altaOrdua" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="altaOrdua"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="enplegatua"/>
+	</field>
+	<field name="zuzendari" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="zuzendari"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="enplegatua"/>
+	</field>
+	<field name="COLUMN_7" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="izena"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="departamentua"/>
+	</field>
+	<field name="izenArdura" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="izenArdura"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ardura"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="150" y="0" width="240" height="70" uuid="ca27ab6e-25eb-4f2a-94f5-18471097120a"/>
+				<textElement>
+					<font size="52"/>
+				</textElement>
+				<text><![CDATA[Enplegatua]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="-10" y="0" width="80" height="30" uuid="8727210e-874f-473e-98c1-612ee0398b3c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Enplegatua]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="0" width="70" height="30" uuid="92ada453-1792-4ff4-a296-04ab61dd36bf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Izena]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="0" width="70" height="30" uuid="2dba4c41-7014-47aa-8dbf-2b6f6fdbbb24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Soldata]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="0" width="70" height="30" uuid="d8ac1060-be3b-4c42-b7eb-3ae488ebc46a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Alta data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="0" width="70" height="30" uuid="bee7a87b-db35-4d07-9ad8-0bd23828d82d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Alta ordua]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="0" width="70" height="30" uuid="d793b746-db4d-4911-a2af-84b1c933eb42"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Zuzendaria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="0" width="70" height="30" uuid="eed84c2c-f4b0-4b84-b50d-2f459f225363"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Depart.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="0" width="70" height="30" uuid="9f1fbaff-89f4-47ba-976d-b7e9d5d88d05"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ardura]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="70" height="30" uuid="4c75ee84-c4af-45c7-838c-72ffafa4d08c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{idEnplegatua}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="0" width="70" height="30" uuid="259573ee-bac3-4aff-9802-f2666a30aff1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{izena}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="0" width="70" height="30" uuid="87aae0c5-560b-497b-aadb-c4b11430ac5c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{soldata}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="0" width="70" height="30" uuid="53622e18-ac1f-4df1-bad6-9af15337e399"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{altaData}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="70" height="30" uuid="7fab75fe-c90b-4b36-b9b8-194df0f42d91"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{altaOrdua}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="0" width="70" height="30" uuid="5d7f9470-3bc9-4372-a3c6-8264b78ea9df"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{zuzendari}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="0" width="70" height="30" uuid="05ca775b-e122-443d-b0fb-24aec2a8ff4f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="0" width="70" height="30" uuid="79d039b1-dfbb-443f-9c54-dd737727f153"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{izenArdura}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
