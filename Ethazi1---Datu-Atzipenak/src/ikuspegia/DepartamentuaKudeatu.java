@@ -22,6 +22,7 @@ import kontroladorea.Departamentua;
 import kontroladorea.Enplegatua;
 import kontroladorea.Metodoak;
 import kontroladorea.MetodoakIkuspegia;
+import logger.LoggerKudeatu;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -158,6 +159,7 @@ public class DepartamentuaKudeatu extends JFrame {
 				
 				if(tabla.getSelectedRow() == -1) {
 					JOptionPane.showMessageDialog(null, "Aukeratu lerro bat, mesedez.");
+					LoggerKudeatu.idatziLog("Lerroa aukeratu behar da.");
 				} else {
 					lerroAukeratu = tabla.convertRowIndexToModel(tabla.getSelectedRow());
 					Metodoak.ezabatuDepartamentua(Integer.parseInt(dtm.getValueAt(lerroAukeratu, 0).toString()));

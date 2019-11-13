@@ -51,9 +51,7 @@ public class Kontsultak {
 				Enplegatuak.add(e1);
 
 			}
-			
-			System.out.println();
-			System.out.println("Conexioa eginda");
+
 		}catch(Exception y) {
 			System.out.println(y.getMessage());
 			
@@ -86,9 +84,7 @@ public class Kontsultak {
 				Departamentuak.add(d1);
 
 			}
-			
-			System.out.println();
-			System.out.println("Conexioa eginda");
+
 		}catch(Exception y) {
 			System.out.println(y.getMessage());
 			
@@ -152,7 +148,6 @@ public class Kontsultak {
 	enplegatuak.add(e1);
 
 	 eredua.Insertak.sartuErabiltzailea(e1);
-	//reiniciarArray(datos);
 
 	   }
 	   
@@ -200,9 +195,6 @@ public class Kontsultak {
 				Ardurak.add(a1);
 
 			}
-			
-			System.out.println();
-			System.out.println("Conexioa eginda");
 		}catch(Exception y) {
 			System.out.println(y.getMessage());
 			
@@ -229,8 +221,6 @@ public class Kontsultak {
 
 			}
 			
-			System.out.println();
-			System.out.println("Conexioa eginda");
 		}catch(Exception y) {
 			System.out.println(y.getMessage());
 			
@@ -255,8 +245,6 @@ public class Kontsultak {
 
 			}
 			
-			System.out.println();
-			System.out.println("Conexioa eginda");
 		}catch(Exception y) {
 			System.out.println(y.getMessage());
 			
@@ -281,8 +269,6 @@ public class Kontsultak {
 
 			}
 			
-			System.out.println();
-			System.out.println("Conexioa eginda");
 		}catch(Exception y) {
 			System.out.println(y.getMessage());
 			
@@ -306,9 +292,6 @@ public class Kontsultak {
 				izena = rs.getString(1);
 
 			}
-			
-			System.out.println();
-			System.out.println("Conexioa eginda");
 		}catch(Exception y) {
 			System.out.println(y.getMessage());
 			

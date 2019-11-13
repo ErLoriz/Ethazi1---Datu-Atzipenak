@@ -79,29 +79,9 @@ public class Menua extends JFrame {
 				exp.setConfiguration(conf);
 				exp.exportReport();
 
-				// se muestra en una ventana aparte para su descarga
-				JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-				".\\src\\EnplegatuaJasper.jasper", null,
-				DriverManager.getConnection("jdbc:mysql://localhost/elorrieta", "root", ""));
-				JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
+				JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
 				jasperViewer.setVisible(true);
 				
-				//ENPLEGATUA
-				
-				JasperPrint jasperPrint2 = JasperFillManager.fillReport(".\\src\\DepartamentuaJasper.jasper", null,DriverManager.getConnection("jdbc:mysql://localhost/elorrieta", "root", ""));
-				JRPdfExporter exp2 = new JRPdfExporter();
-				exp2.setExporterInput(new SimpleExporterInput(jasperPrint));
-				exp2.setExporterOutput(new SimpleOutputStreamExporterOutput("departamentuak.pdf"));
-				SimplePdfExporterConfiguration conf2 = new SimplePdfExporterConfiguration();
-				exp2.setConfiguration(conf2);
-				exp2.exportReport();
-
-				// se muestra en una ventana aparte para su descarga
-				JasperPrint jasperPrintWindow2 = JasperFillManager.fillReport(
-				".\\src\\DepartamentuaJasper.jasper", null,
-				DriverManager.getConnection("jdbc:mysql://localhost/elorrieta", "root", ""));
-				JasperViewer jasperViewer2 = new JasperViewer(jasperPrintWindow2);
-				jasperViewer2.setVisible(true);
 				} catch (Exception e) {
 					System.out.println("Error al generar el reporte" + e.getMessage());
 				}
@@ -119,6 +99,7 @@ public class Menua extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				try {
+					
 					JasperPrint jasperPrint = JasperFillManager.fillReport(".\\src\\EnplegatuaJasper.jasper", null,DriverManager.getConnection("jdbc:mysql://localhost/elorrieta", "root", ""));
 					JRPdfExporter exp = new JRPdfExporter();
 					exp.setExporterInput(new SimpleExporterInput(jasperPrint));
@@ -127,29 +108,9 @@ public class Menua extends JFrame {
 					exp.setConfiguration(conf);
 					exp.exportReport();
 
-					// se muestra en una ventana aparte para su descarga
-					JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-					".\\src\\EnplegatuaJasper.jasper", null,
-					DriverManager.getConnection("jdbc:mysql://localhost/elorrieta", "root", ""));
-					JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
+					JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
 					jasperViewer.setVisible(true);
 					
-					//ENPLEGATUA
-					
-					JasperPrint jasperPrint2 = JasperFillManager.fillReport(".\\src\\EnplegatuaJasper.jasper", null,DriverManager.getConnection("jdbc:mysql://localhost/elorrieta", "root", ""));
-					JRPdfExporter exp2 = new JRPdfExporter();
-					exp2.setExporterInput(new SimpleExporterInput(jasperPrint));
-					exp2.setExporterOutput(new SimpleOutputStreamExporterOutput("enplegatuak.pdf"));
-					SimplePdfExporterConfiguration conf2 = new SimplePdfExporterConfiguration();
-					exp2.setConfiguration(conf2);
-					exp2.exportReport();
-
-					// se muestra en una ventana aparte para su descarga
-					JasperPrint jasperPrintWindow2 = JasperFillManager.fillReport(
-					".\\src\\EnplegatuaJasper.jasper", null,
-					DriverManager.getConnection("jdbc:mysql://localhost/elorrieta", "root", ""));
-					JasperViewer jasperViewer2 = new JasperViewer(jasperPrintWindow2);
-					jasperViewer2.setVisible(true);
 					} catch (Exception e) {
 						System.out.println("Error al generar el reporte" + e.getMessage());
 					}

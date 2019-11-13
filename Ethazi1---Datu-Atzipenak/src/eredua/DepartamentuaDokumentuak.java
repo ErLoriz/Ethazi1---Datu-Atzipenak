@@ -99,8 +99,6 @@ public class DepartamentuaDokumentuak {
 
 			}
 			writer.write(sb.toString());
-
-			System.out.println("Hola");
 			
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
