@@ -1,7 +1,6 @@
 package ikuspegia;
 
 import java.awt.BorderLayout;
-import logger.*;
 import java.awt.EventQueue;
 
 import javax.swing.JButton;
@@ -21,6 +20,7 @@ import eredua.Kontsultak;
 import eredua.Update;
 import kontroladorea.Departamentua;
 import kontroladorea.Enplegatua;
+import kontroladorea.LoggerKudeatu;
 import kontroladorea.Metodoak;
 import kontroladorea.MetodoakIkuspegia;
 
@@ -191,13 +191,21 @@ public class EnplegatuaKudeatu extends JFrame {
         		if(txtIzena.getText().equals("")) {
         			beteta = false;
         			JOptionPane.showMessageDialog(null,"Izena jarri", "Txarto", JOptionPane.INFORMATION_MESSAGE);
-        			LoggerKudeatu.idatziLog("Izena falta da");
+        			LoggerKudeatu.idatziLog("Izena jarri behar da.\nClass: "+this.getClass().getName()+"\n");
         		}
         		else if(txtSoldata.getText().equals("")) {
         			beteta = false;
         			JOptionPane.showMessageDialog(null,"Soldata jarri", "Txarto", JOptionPane.INFORMATION_MESSAGE);
+        			LoggerKudeatu.idatziLog("Soldata jarri behar da.\nClass: "+this.getClass().getName()+"\n");
+        		}else {
+        		try {
+    				Double.parseDouble(txtSoldata.getText());
+    			}catch(Exception i) {
+    				beteta = false;
+    				JOptionPane.showMessageDialog(null,"Soldata txarto jarrita dago", "Txarto", JOptionPane.INFORMATION_MESSAGE);
+    				LoggerKudeatu.idatziLog("Soldata txarto jarrita dago.\nClass: "+this.getClass().getName()+"\n");
+    			}
         		}
-        		
         		if(beteta == true) {
 	        		SimpleDateFormat data = new SimpleDateFormat("yyyy/MM/dd");
 	        		SimpleDateFormat ordua = new SimpleDateFormat("HH:mm");
@@ -230,6 +238,7 @@ public class EnplegatuaKudeatu extends JFrame {
 
 				if(tabla.getSelectedRow() == -1) {
 					JOptionPane.showMessageDialog(null, "Aukeratu lerro bat, mesedez.");
+					LoggerKudeatu.idatziLog("Lerroa aukeratu behar da.\nClass: "+this.getClass().getName()+"\n");
 				} else {
 					lerroAukeratu = tabla.convertRowIndexToModel(tabla.getSelectedRow());
 					Delete.EnplegatuaEzabatu(Integer.parseInt(dtm.getValueAt(lerroAukeratu, 0).toString()));
@@ -254,7 +263,8 @@ public class EnplegatuaKudeatu extends JFrame {
         		int i = tabla.getSelectedRow();
         		
         		if(i == -1) {
-        			JOptionPane.showMessageDialog(null, "Mesedez, aukeratu lerro bat."); 
+        			JOptionPane.showMessageDialog(null, "Mesedez, aukeratu lerro bat.");
+        			LoggerKudeatu.idatziLog("Lerroa aukeratu behar da.\nClass: "+this.getClass().getName()+"\n");
         		} else {
         			btnAdd.setEnabled(false);
         			btnDel.setEnabled(false);
@@ -317,6 +327,7 @@ public class EnplegatuaKudeatu extends JFrame {
         	public void actionPerformed(ActionEvent arg0) {
         		if(txtIzena.getText().equals("") || txtSoldata.getText().equals("")) {
         			JOptionPane.showMessageDialog(null, "Ez utzi informazioa utzik, mesedez.");
+        			LoggerKudeatu.idatziLog("Ezin da informazioa utzik utzi.\nClass: "+this.getClass().getName()+"\n");
         		}else {
         			
         			dtm.setValueAt(txtIzena.getText(), lerroAukeratu, 1);

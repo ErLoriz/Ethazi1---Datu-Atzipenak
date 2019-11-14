@@ -4,7 +4,7 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (2)"/>
 	<queryString language="SQL">
-		<![CDATA[select * from  elorrieta.departamentua ]]>
+		<![CDATA[select * from  elorrieta.departamentua]]>
 	</queryString>
 	<field name="idDepartamentua" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="idDepartamentua"/>
