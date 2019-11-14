@@ -2,8 +2,13 @@ package eredua;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -14,10 +19,13 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import groovy.io.EncodingAwareBufferedWriter;
 import kontroladorea.Ardura;
 import kontroladorea.Departamentua;
 import kontroladorea.Enplegatua;
@@ -26,7 +34,9 @@ public class DepartamentuaDokumentuak {
 
 	public static final String xmlFilePath = ".\\src\\Departamentuak.xml";
 
+	public static ArrayList<Enplegatua> e1 = Kontsultak.EnplegatuakIkusi();
 	public static ArrayList<Departamentua> d1 = Kontsultak.DepartamentuakIkusi();
+	public static ArrayList<Ardura> a1 = Kontsultak.ArdurakIkusi();
 
 	public static void departamentuaXMLSartu() {
 
@@ -50,7 +60,6 @@ public class DepartamentuaDokumentuak {
 				attr.setValue(Integer.toString(d1.get(i).getIdDepartamentua()));
 				enplegatua.setAttributeNode(attr);
 
-
 				Element izena = document.createElement("Izena");
 				izena.appendChild(document.createTextNode(d1.get(i).getIzena()));
 				enplegatua.appendChild(izena);
@@ -60,12 +69,11 @@ public class DepartamentuaDokumentuak {
 				enplegatua.appendChild(kokapena);
 
 			}
-			
+
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource domSource = new DOMSource(document);
 			StreamResult streamResult = new StreamResult(new File(xmlFilePath));
-
 
 			transformer.transform(domSource, streamResult);
 
@@ -87,9 +95,9 @@ public class DepartamentuaDokumentuak {
 			sb.append(',');
 			sb.append("Kokapena");
 			sb.append('\n');
-			
+
 			for (int i = 0; i <= d1.size() - 1; i++) {
-				
+
 				sb.append(d1.get(i).getIdDepartamentua());
 				sb.append(',');
 				sb.append(d1.get(i).getIzena());
@@ -99,11 +107,56 @@ public class DepartamentuaDokumentuak {
 
 			}
 			writer.write(sb.toString());
-			
+
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
 
 	}
 
+	public static void departamentuaJSONSartu() {
+		JSONObject deptObj = new JSONObject();
+		JSONObject enpObj = new JSONObject();
+		JSONArray enplegatua = new JSONArray();
+
+		try (FileWriter file = new FileWriter(".\\src\\Departamentuak.json")) {
+			file.flush();
+
+			for (int i = 0; i <= d1.size() - 1; i++) {
+
+				deptObj.put("ID Departamentua", d1.get(i).getIdDepartamentua());
+				deptObj.put("Deptartamentu izena", d1.get(i).getIzena());
+				deptObj.put("Kokapena", d1.get(i).getKokapena());
+
+				for (int j = 0; j <= e1.size() - 1; j++) {
+					if (e1.get(j).getDepartamentua_idDepartamentua() == d1.get(i).getIdDepartamentua()) {
+
+						enpObj.put("ID Enplegatua", e1.get(j).getIdEnplegatua());
+						enpObj.put("Izena", e1.get(j).getIzena());
+						enpObj.put("Soldata", e1.get(j).getSoldata());
+						enpObj.put("Alta data", e1.get(j).getAltaData());
+						enpObj.put("Alta data", e1.get(j).getAltaOrdua());
+						enpObj.put("Zuzendaria", e1.get(j).getZuzendari());
+						for (int x = 0; x <= a1.size() - 1; x++) {
+							if (a1.get(x).getIdArdura() == e1.get(j).getArdura_idArdura()) {
+								enpObj.put("Departamentua", a1.get(x).getIzenArdura());
+							}
+						}
+
+						enplegatua.add(enpObj);
+						deptObj.put("Enplegatua", enplegatua);
+
+					}
+
+				}
+				file.write(deptObj.toString());
+			}
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+
+	}
 }

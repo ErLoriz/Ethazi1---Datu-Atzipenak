@@ -1,7 +1,6 @@
 package ikuspegia;
 
 import java.awt.BorderLayout;
-import logger.*;
 import java.awt.EventQueue;
 
 import javax.swing.JButton;
@@ -21,6 +20,7 @@ import eredua.Kontsultak;
 import eredua.Update;
 import kontroladorea.Departamentua;
 import kontroladorea.Enplegatua;
+import kontroladorea.LoggerKudeatu;
 import kontroladorea.Metodoak;
 import kontroladorea.MetodoakIkuspegia;
 

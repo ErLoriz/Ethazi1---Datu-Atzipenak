@@ -20,9 +20,9 @@ import eredua.Insertak;
 import eredua.Update;
 import kontroladorea.Departamentua;
 import kontroladorea.Enplegatua;
+import kontroladorea.LoggerKudeatu;
 import kontroladorea.Metodoak;
 import kontroladorea.MetodoakIkuspegia;
-import logger.LoggerKudeatu;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

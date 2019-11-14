@@ -88,6 +88,7 @@ public class Menua extends JFrame {
 				
 				eredua.DepartamentuaDokumentuak.departamentuaXMLSartu();
 				eredua.DepartamentuaDokumentuak.departamentuaCSVSartu();
+				eredua.DepartamentuaDokumentuak.departamentuaJSONSartu();
 				
 			}
 		});
