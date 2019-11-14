@@ -22,7 +22,6 @@ public class LoggerKudeatu {
 
         Logger logger = Logger.getLogger("MyLog");  
         FileHandler fh;
-        String cadena="";
         
 
         try {  
