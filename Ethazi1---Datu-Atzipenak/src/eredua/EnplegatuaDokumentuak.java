@@ -28,13 +28,15 @@ import kontroladorea.Enplegatua;
 
 public class EnplegatuaDokumentuak {
 
-	public static final String xmlFilePath = ".\\src\\Enplegatuak.xml";
-
-	public static ArrayList<Enplegatua> e1 = Kontsultak.EnplegatuakIkusi();
-	public static ArrayList<Departamentua> d1 = Kontsultak.DepartamentuakIkusi();
-	public static ArrayList<Ardura> a1 = Kontsultak.ArdurakIkusi();
 
 	public static void enplegatuaXMLSartu() {
+		
+		final String xmlFilePath = ".\\src\\Enplegatuak.xml";
+		
+		ArrayList<Enplegatua> e1 = Kontsultak.EnplegatuakIkusi();
+		ArrayList<Departamentua> d1 = Kontsultak.DepartamentuakIkusi();
+		ArrayList<Ardura> a1 = Kontsultak.ArdurakIkusi();		
+		
 
 		try {
 
@@ -109,6 +111,10 @@ public class EnplegatuaDokumentuak {
 	}
 
 	public static void enplegatuaCSVSartu() {
+		
+		ArrayList<Enplegatua> e1 = Kontsultak.EnplegatuakIkusi();
+		ArrayList<Departamentua> d1 = Kontsultak.DepartamentuakIkusi();
+		ArrayList<Ardura> a1 = Kontsultak.ArdurakIkusi();	
 
 		try (PrintWriter writer = new PrintWriter(new File(".\\src\\Enplegatuak.csv"))) {
 			StringBuilder sb = new StringBuilder();

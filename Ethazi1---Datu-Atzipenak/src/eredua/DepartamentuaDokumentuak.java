@@ -32,14 +32,12 @@ import kontroladorea.Enplegatua;
 
 public class DepartamentuaDokumentuak {
 
-	public static final String xmlFilePath = ".\\src\\Departamentuak.xml";
-
-	public static ArrayList<Enplegatua> e1 = Kontsultak.EnplegatuakIkusi();
-	public static ArrayList<Departamentua> d1 = Kontsultak.DepartamentuakIkusi();
-	public static ArrayList<Ardura> a1 = Kontsultak.ArdurakIkusi();
-
 	public static void departamentuaXMLSartu() {
 
+		final String xmlFilePath = ".\\src\\Departamentuak.xml";
+		
+		ArrayList<Departamentua> d1 = Kontsultak.DepartamentuakIkusi();
+		
 		try {
 
 			DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
@@ -85,6 +83,8 @@ public class DepartamentuaDokumentuak {
 	}
 
 	public static void departamentuaCSVSartu() {
+		
+		ArrayList<Departamentua> d1 = Kontsultak.DepartamentuakIkusi();
 
 		try (PrintWriter writer = new PrintWriter(new File(".\\src\\Departamentuak.csv"))) {
 			StringBuilder sb = new StringBuilder();
@@ -115,6 +115,11 @@ public class DepartamentuaDokumentuak {
 	}
 
 	public static void departamentuaJSONSartu() {
+		
+		ArrayList<Enplegatua> e1 = Kontsultak.EnplegatuakIkusi();
+		ArrayList<Departamentua> d1 = Kontsultak.DepartamentuakIkusi();
+		ArrayList<Ardura> a1 = Kontsultak.ArdurakIkusi();
+		
 		JSONObject deptObj = new JSONObject();
 		JSONObject enpObj = new JSONObject();
 		JSONArray enplegatua = new JSONArray();

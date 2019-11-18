@@ -268,7 +268,6 @@ public class EnplegatuaKudeatu extends JFrame {
         		} else {
         			btnAdd.setEnabled(false);
         			btnDel.setEnabled(false);
-        			lblBilatu.setEnabled(false);
         			btnBaieztatu.setEnabled(true);
         			btnEzeztatu.setEnabled(true);
         			
