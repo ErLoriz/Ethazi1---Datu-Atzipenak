@@ -28,7 +28,7 @@ public class Update {
 			 int numReg = s.executeUpdate( "UPDATE departamentua SET izena = '"+izena+"', kokapena = '"+kokapena+"' WHERE idDepartamentua= "+idDepartamentua);
 			 // Informamos del número de registros borrados
 			 System.out.println ("\nAldatuta\n");
-			
+			 conexion.close();	
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -76,7 +76,7 @@ public class Update {
 			 int numReg = s.executeUpdate( "UPDATE enplegatua SET izena = '"+izena+"', soldata = '"+soldata+"', zuzendari = '"+zuzendari+"', Departamentua_idDepartamentua = '"+idDeptINT+"', Ardura_idArdura = '"+idArduraINT+"' WHERE idEnplegatua= "+idEnplegatua);
 			 // Informamos del número de registros borrados
 			 System.out.println ("\nAldatuta\n");
-			
+			 conexion.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

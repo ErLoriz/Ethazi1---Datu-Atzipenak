@@ -23,7 +23,7 @@ public class Delete {
 			//st.setInt(0,90);
 			st.executeUpdate();
 			
-			
+			conexion.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -43,7 +43,7 @@ public class Delete {
 			
 			PreparedStatement st = conexion.prepareStatement("DELETE FROM enplegatua WHERE idEnplegatua = '"+idEnplegatu+"'");
 			st.executeUpdate();
-			
+			conexion.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

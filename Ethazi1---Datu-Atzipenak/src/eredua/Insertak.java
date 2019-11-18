@@ -41,7 +41,7 @@ public class Insertak {
 			preparedStmt.execute();
 
 			System.out.println("Sartuta");
-
+			conexion.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -73,7 +73,7 @@ public class Insertak {
 			preparedStmt.execute();
 
 			System.out.println("Sartuta");
-
+			conexion.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

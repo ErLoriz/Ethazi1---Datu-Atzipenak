@@ -51,7 +51,7 @@ public class Kontsultak {
 				Enplegatuak.add(e1);
 
 			}
-
+			Conexion.close();
 		}catch(Exception y) {
 			System.out.println(y.getMessage());
 			
@@ -84,7 +84,7 @@ public class Kontsultak {
 				Departamentuak.add(d1);
 
 			}
-
+			Conexion.close();
 		}catch(Exception y) {
 			System.out.println(y.getMessage());
 			
@@ -195,6 +195,7 @@ public class Kontsultak {
 				Ardurak.add(a1);
 
 			}
+			Conexion.close();
 		}catch(Exception y) {
 			System.out.println(y.getMessage());
 			
@@ -220,7 +221,7 @@ public class Kontsultak {
 				idDepartamentua = rs.getInt(1);
 
 			}
-			
+			Conexion.close();
 		}catch(Exception y) {
 			System.out.println(y.getMessage());
 			
@@ -244,7 +245,7 @@ public class Kontsultak {
 				izena = rs.getString(1);
 
 			}
-			
+			Conexion.close();
 		}catch(Exception y) {
 			System.out.println(y.getMessage());
 			
@@ -268,7 +269,7 @@ public class Kontsultak {
 				idArdura = rs.getInt(1);
 
 			}
-			
+			Conexion.close();
 		}catch(Exception y) {
 			System.out.println(y.getMessage());
 			
@@ -292,6 +293,7 @@ public class Kontsultak {
 				izena = rs.getString(1);
 
 			}
+			Conexion.close();
 		}catch(Exception y) {
 			System.out.println(y.getMessage());
 			
