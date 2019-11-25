@@ -9,6 +9,7 @@ import com.mysql.jdbc.Statement;
 
 import kontroladorea.Departamentua;
 import kontroladorea.Enplegatua;
+import kontroladorea.LoggerKudeatu;
 
 public class Insertak {
 
@@ -43,7 +44,7 @@ public class Insertak {
 			System.out.println("Sartuta");
 			
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			LoggerKudeatu.idatziLog("ID enplegatua '"+e1.getIdEnplegatua()+"' errepikatuta dago.");
 		}
 
 	}
@@ -75,7 +76,7 @@ public class Insertak {
 			System.out.println("Sartuta");
 			
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			LoggerKudeatu.idatziLog("ID departamentua '"+d1.getIdDepartamentua()+"' errepikatuta dago.");
 		}
 
 	}

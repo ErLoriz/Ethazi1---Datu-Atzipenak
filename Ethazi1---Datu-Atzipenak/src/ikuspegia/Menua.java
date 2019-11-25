@@ -71,7 +71,7 @@ public class Menua extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-				JasperPrint jasperPrint = JasperFillManager.fillReport(".\\src\\DepartamentuaJasper.jasper", null,DriverManager.getConnection("jdbc:mysql://localhost/elorrieta", "root", ""));
+				JasperPrint jasperPrint = JasperFillManager.fillReport(".\\src\\DepartamentuaJasper.jasper", null,Konexioa.getConnection());
 				JRPdfExporter exp = new JRPdfExporter();
 				exp.setExporterInput(new SimpleExporterInput(jasperPrint));
 				exp.setExporterOutput(new SimpleOutputStreamExporterOutput("departamentuak.pdf"));
@@ -92,7 +92,7 @@ public class Menua extends JFrame {
 				
 			}
 		});
-		btnDepartamentuakIkusi.setBounds(156, 239, 282, 49);
+		btnDepartamentuakIkusi.setBounds(55, 240, 219, 49);
 		contentPane.add(btnDepartamentuakIkusi);
 		
 		JButton btnEnplegatuakIkusi = new JButton("Enplegatuak dokumentatu");
@@ -101,7 +101,7 @@ public class Menua extends JFrame {
 
 				try {
 					
-					JasperPrint jasperPrint = JasperFillManager.fillReport(".\\src\\EnplegatuaJasper.jasper", null,DriverManager.getConnection("jdbc:mysql://localhost/elorrieta", "root", ""));
+					JasperPrint jasperPrint = JasperFillManager.fillReport(".\\src\\EnplegatuaJasper.jasper", null,Konexioa.getConnection());
 					JRPdfExporter exp = new JRPdfExporter();
 					exp.setExporterInput(new SimpleExporterInput(jasperPrint));
 					exp.setExporterOutput(new SimpleOutputStreamExporterOutput("enplegatuak.pdf"));
@@ -121,7 +121,25 @@ public class Menua extends JFrame {
 				
 			}
 		});
-		btnEnplegatuakIkusi.setBounds(156, 325, 282, 49);
+		btnEnplegatuakIkusi.setBounds(55, 317, 219, 49);
 		contentPane.add(btnEnplegatuakIkusi);
+		
+		JButton btnDepartamentuakIrakurri = new JButton("Departamentuak irakurri");
+		btnDepartamentuakIrakurri.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DepartamentuaIrakurri.CSVDepartamentuaIrakurri();
+			}
+		});
+		btnDepartamentuakIrakurri.setBounds(312, 240, 228, 49);
+		contentPane.add(btnDepartamentuakIrakurri);
+		
+		JButton btnEnplegatuakIrakurri = new JButton("Enplegatuak irakurri");
+		btnEnplegatuakIrakurri.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EnplegatuaIrakurri.CSVEnplegatuaIrakurri();
+			}
+		});
+		btnEnplegatuakIrakurri.setBounds(312, 317, 228, 49);
+		contentPane.add(btnEnplegatuakIrakurri);
 	}
 }
