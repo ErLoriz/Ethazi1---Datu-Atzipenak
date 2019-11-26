@@ -15,7 +15,10 @@ import eredua.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -32,7 +35,6 @@ public class Menua extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-
 
 	/**
 	 * Create the frame.
@@ -51,8 +53,7 @@ public class Menua extends JFrame {
 				dispose();
 			}
 		});
-		
-		
+
 		btnDepartamentuakKudeatu.setBounds(156, 52, 282, 49);
 		contentPane.add(btnDepartamentuakKudeatu);
 		btnEnplegatuakKudeatu.addActionListener(new ActionListener() {
@@ -61,47 +62,48 @@ public class Menua extends JFrame {
 				dispose();
 			}
 		});
-		
-		
+
 		btnEnplegatuakKudeatu.setBounds(156, 147, 282, 49);
 		contentPane.add(btnEnplegatuakKudeatu);
-		
+
 		JButton btnDepartamentuakIkusi = new JButton("Departamentuak dokumentatu\r\n");
 		btnDepartamentuakIkusi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				try {
-				JasperPrint jasperPrint = JasperFillManager.fillReport(".\\src\\DepartamentuaJasper.jasper", null,Konexioa.getConnection());
-				JRPdfExporter exp = new JRPdfExporter();
-				exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-				exp.setExporterOutput(new SimpleOutputStreamExporterOutput("departamentuak.pdf"));
-				SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
-				exp.setConfiguration(conf);
-				exp.exportReport();
 
-				JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
-				jasperViewer.setVisible(true);
-				
+				try {
+					JasperPrint jasperPrint = JasperFillManager.fillReport(".\\src\\DepartamentuaJasper.jasper", null,
+							Konexioa.getConnection());
+					JRPdfExporter exp = new JRPdfExporter();
+					exp.setExporterInput(new SimpleExporterInput(jasperPrint));
+					exp.setExporterOutput(new SimpleOutputStreamExporterOutput("departamentuak.pdf"));
+					SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
+					exp.setConfiguration(conf);
+					exp.exportReport();
+
+					JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+					jasperViewer.setVisible(true);
+
 				} catch (Exception e) {
 					System.out.println("Error al generar el reporte" + e.getMessage());
 				}
-				
+
 				eredua.DepartamentuaDokumentuak.departamentuaXMLSartu();
 				eredua.DepartamentuaDokumentuak.departamentuaCSVSartu();
 				eredua.DepartamentuaDokumentuak.departamentuaJSONSartu();
-				
+
 			}
 		});
 		btnDepartamentuakIkusi.setBounds(55, 240, 219, 49);
 		contentPane.add(btnDepartamentuakIkusi);
-		
+
 		JButton btnEnplegatuakIkusi = new JButton("Enplegatuak dokumentatu");
 		btnEnplegatuakIkusi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
 				try {
-					
-					JasperPrint jasperPrint = JasperFillManager.fillReport(".\\src\\EnplegatuaJasper.jasper", null,Konexioa.getConnection());
+
+					JasperPrint jasperPrint = JasperFillManager.fillReport(".\\src\\EnplegatuaJasper.jasper", null,
+							Konexioa.getConnection());
 					JRPdfExporter exp = new JRPdfExporter();
 					exp.setExporterInput(new SimpleExporterInput(jasperPrint));
 					exp.setExporterOutput(new SimpleOutputStreamExporterOutput("enplegatuak.pdf"));
@@ -111,32 +113,59 @@ public class Menua extends JFrame {
 
 					JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
 					jasperViewer.setVisible(true);
-					
-					} catch (Exception e) {
-						System.out.println("Error al generar el reporte" + e.getMessage());
-					}
-				
+
+				} catch (Exception e) {
+					System.out.println("Error al generar el reporte" + e.getMessage());
+				}
+
 				eredua.EnplegatuaDokumentuak.enplegatuaXMLSartu();
 				eredua.EnplegatuaDokumentuak.enplegatuaCSVSartu();
-				
+
 			}
 		});
 		btnEnplegatuakIkusi.setBounds(55, 317, 219, 49);
 		contentPane.add(btnEnplegatuakIkusi);
-		
+
 		JButton btnDepartamentuakIrakurri = new JButton("Departamentuak irakurri");
 		btnDepartamentuakIrakurri.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DepartamentuaIrakurri.CSVDepartamentuaIrakurri();
+
+				Object[] options1 = { "CSV", "XML", "Ezeztatu" };
+
+				JPanel panel = new JPanel();
+
+				int result = JOptionPane.showOptionDialog(null, panel, "Aukeratu irakurtzeko era.",
+						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, options1, null);
+				if (result == JOptionPane.YES_OPTION) {
+					DepartamentuaIrakurri.CSVDepartamentuaIrakurri();
+				} else if(result == JOptionPane.NO_OPTION) {
+					DepartamentuaIrakurri.XMLDepartamentuaIrakurri();
+				} 
+				
+
+
 			}
 		});
 		btnDepartamentuakIrakurri.setBounds(312, 240, 228, 49);
 		contentPane.add(btnDepartamentuakIrakurri);
-		
+
 		JButton btnEnplegatuakIrakurri = new JButton("Enplegatuak irakurri");
 		btnEnplegatuakIrakurri.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EnplegatuaIrakurri.CSVEnplegatuaIrakurri();
+				
+				Object[] options1 = { "CSV", "XML", "Ezeztatu" };
+
+				JPanel panel = new JPanel();
+
+				int result = JOptionPane.showOptionDialog(null, panel, "Aukeratu irakurtzeko era.",
+						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, options1, null);
+				if (result == JOptionPane.YES_OPTION) {
+					EnplegatuaIrakurri.CSVEnplegatuaIrakurri();
+				} else if(result == JOptionPane.NO_OPTION) {
+					EnplegatuaIrakurri.XMLEnplegatuaIrakurri();
+				} 
+				
+				
 			}
 		});
 		btnEnplegatuakIrakurri.setBounds(312, 317, 228, 49);

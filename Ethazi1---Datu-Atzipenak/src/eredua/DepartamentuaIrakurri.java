@@ -1,14 +1,20 @@
 package eredua;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 import kontroladorea.*;
 import javax.swing.JOptionPane;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
-import kontroladorea.LoggerKudeatu;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class DepartamentuaIrakurri {
 
@@ -74,4 +80,39 @@ public class DepartamentuaIrakurri {
 
 	}
 
+	public static void XMLDepartamentuaIrakurri() {
+
+		String idDept = null;
+		String izena = null;
+		String kokapena = null;
+		
+		try {
+			File archivo = new File(".\\src\\Departamentuak.xml");
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder documentBuilder = dbf.newDocumentBuilder();
+			Document document = documentBuilder.parse(archivo);
+			document.getDocumentElement().normalize();
+			System.out.println("Elemento raiz:" + document.getDocumentElement().getNodeName());
+			NodeList listaEmpleados = document.getElementsByTagName("Departamentua");
+			for (int temp = 0; temp < listaEmpleados.getLength(); temp++) {
+				Node nodo = listaEmpleados.item(temp);
+				System.out.println("Elemento:" + nodo.getNodeName());
+				if (nodo.getNodeType() == Node.ELEMENT_NODE) {
+					Element element = (Element) nodo;
+
+					idDept = element.getAttribute("ID");
+					izena = element.getElementsByTagName("Izena").item(0).getTextContent();
+					kokapena = element.getElementsByTagName("Kokapena").item(0).getTextContent();
+					
+					Departamentua d1 = new Departamentua(Integer.parseInt(idDept), izena, kokapena);
+					Insertak.SartuDepartamentua(d1);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	
 }
